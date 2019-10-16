@@ -1,3 +1,11 @@
 .App {
   text-align: left;
 }
+
+.bg-main {
+  background-color: #3C455c;
+}
+
+.light-color {
+  color: #DDE2E3;
+}
