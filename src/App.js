@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import Navigation from './Navigation';
 
 function App() {
   return (
     <div className="App">
-      Welcome to Movie Q!
+      <Navigation />
+      <h1>Welcome to Movie Q!</h1>
     </div>
   );
 }
