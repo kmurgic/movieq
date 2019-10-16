@@ -19,7 +19,7 @@ const Navigation = () => {
       expanded={expanded}
       onToggle={() => setExpanded(prev => !prev)}
     >
-      <Navbar.Brand as={NavLink} to="/">React-Bootstrap</Navbar.Brand>
+      <Navbar.Brand as={NavLink} to="/">Movie Q</Navbar.Brand>
       <Navbar.Toggle aria-controls="main-navbar-nav" />
       <Navbar.Collapse id="main-navbar-nav">
         <Nav className="ml-auto mr-sm-2">
