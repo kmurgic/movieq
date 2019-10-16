@@ -8,8 +8,8 @@ const Navigation = () => {
     <Navbar bg="main" variant="dark" expand="lg" fixed="top">
       <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
       <Navbar.Toggle aria-controls="main-navbar-nav" />
-      <Navbar.Collapse className="d-flex justify-content-end" id="main-navbar-nav">
-        <Nav className="mr-sm-2">
+      <Navbar.Collapse id="main-navbar-nav">
+        <Nav className="ml-auto mr-sm-2">
           <Nav.Link href="#">Home</Nav.Link>
           <Nav.Link href="#">My Queue</Nav.Link>
           <Nav.Link href="#">My Profile</Nav.Link>
