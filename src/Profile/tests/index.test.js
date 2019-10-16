@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Navigation from '../index';
+import Profile from '../index';
 
 it('renders without crashing', () => {
-  shallow(<Navigation />);
+  shallow(<Profile />);
 });

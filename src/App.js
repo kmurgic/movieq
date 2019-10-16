@@ -3,14 +3,33 @@ import './App.css';
 import Navigation from './Navigation';
 import {
   BrowserRouter as Router,
+  Switch,
+  Route
 } from "react-router-dom";
+import Queues from './Queues';
+import Discover from './Discover';
+import Home from './Home';
+import Profile from './Profile';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Navigation />
-        <h1>Welcome to Movie Q!</h1>
+        <Switch>
+          <Route path="/discover">
+            <Discover />
+          </Route>
+          <Route path="/queues">
+            <Queues />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );
