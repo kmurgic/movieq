@@ -10,6 +10,7 @@ import Queues from './Queues';
 import Discover from './Discover';
 import Home from './Home';
 import Profile from './Profile';
+import './custom.scss';
 
 function App() {
   return (

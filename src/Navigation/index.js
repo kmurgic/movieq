@@ -13,7 +13,7 @@ const Navigation = () => {
 
   return (
     <Navbar
-      bg="main"
+      bg="primary"
       variant="dark"
       expand="lg"
       fixed="top"

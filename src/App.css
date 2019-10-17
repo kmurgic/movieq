@@ -2,21 +2,3 @@
   text-align: left;
   margin: 4.5rem 2rem 2rem 2rem;
 }
-
-.bg-main {
-  background-color: #3C455c;
-}
-
-.light-color {
-  color: #DDE2E3;
-}
-
-body .btn-outline-amber {
-  color: #b37c57;
-  border-color: #b37c57;
-}
-
-body .btn-outline-amber:hover {
-  color: white;
-  background-color: #b37c57;
-}
