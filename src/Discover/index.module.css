@@ -1,0 +1,10 @@
+form .search-input {
+  border-radius: 0;
+  max-width: 40em;
+}
+
+form .search-button {
+  border-radius: 0;
+  position: relative;
+  right: 2.625em;
+}
