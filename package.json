@@ -58,5 +58,8 @@
     "coverageReporters": [
       "text"
     ]
+  },
+  "devDependencies": {
+    "redux-saga-test-plan": "^4.0.0-rc.3"
   }
 }

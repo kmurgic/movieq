@@ -4,9 +4,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { topMoviesRequest } from './actions';
-
 import Navigation from './Navigation';
 import Queues from './pages/Queues';
 import Discover from './pages/Discover';
@@ -16,8 +15,6 @@ import './custom.scss';
 import './App.css';
 
 function App() {
-  const movieList = useSelector((state) => state.movies.list);
-  console.log(movieList);
   const dispatch = useDispatch();
 
   useEffect(() => {
