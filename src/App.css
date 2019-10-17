@@ -10,3 +10,13 @@
 .light-color {
   color: #DDE2E3;
 }
+
+body .btn-outline-amber {
+  color: #b37c57;
+  border-color: #b37c57;
+}
+
+body .btn-outline-amber:hover {
+  color: white;
+  background-color: #b37c57;
+}

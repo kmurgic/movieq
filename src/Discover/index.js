@@ -17,7 +17,7 @@ const Discover = () => {
         />
         <Button
           className={classes['search-button']}
-          variant="outline-success"
+          variant="outline-amber"
         >
           <FontAwesomeIcon icon={faSearch} />
         </Button>
