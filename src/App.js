@@ -6,10 +6,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Queues from './Queues';
-import Discover from './Discover';
-import Home from './Home';
-import Profile from './Profile';
+import Queues from './pages/Queues';
+import Discover from './pages/Discover';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
 import './custom.scss';
 
 function App() {
