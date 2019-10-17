@@ -8,3 +8,15 @@ form .search-button {
   position: relative;
   right: 2.625em;
 }
+
+body .card {
+  min-width: 24em;
+  max-width: 30em;
+}
+
+body .spinner {
+  width: 4em;
+  height: 4em;
+  margin-top: 2em;
+  border-width: 0.5em;
+}
