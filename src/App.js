@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import './custom.scss';
 import './App.css';
+import Search from './pages/Search';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
         <Switch>
           <Route path="/discover">
             <Discover />
+          </Route>
+          <Route path="/search">
+            <Search />
           </Route>
           <Route path="/queues">
             <Queues />

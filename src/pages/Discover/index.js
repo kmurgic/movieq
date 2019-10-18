@@ -1,13 +1,17 @@
 import React from 'react';
-import SearchBar from './SearchBar';
-import MovieCardContainer from './MovieCardContainer';
+import { useSelector, shallowEqual } from 'react-redux';
+import MovieCardContainer from '../../components/MovieCardContainer';
 
 const Discover = () => {
+  const { list, isLoading, error } = useSelector(state => state.movies, shallowEqual);
 
   return (
     <>
-      <SearchBar handleSearch={() => { }} />
-      <MovieCardContainer />
+      <MovieCardContainer
+        error={error}
+        isLoading={isLoading}
+        movies={list}
+      />
     </>
   );
 };

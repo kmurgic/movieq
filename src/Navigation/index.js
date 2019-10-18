@@ -40,6 +40,13 @@ const Navigation = () => {
           <Nav.Link
             onClick={handleSelect}
             as={NavLink}
+            to="search"
+          >
+            Search
+          </Nav.Link>
+          <Nav.Link
+            onClick={handleSelect}
+            as={NavLink}
             to="queues"
           >
             My Queues

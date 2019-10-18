@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import PropTypes from 'prop-types';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Spinner from 'react-bootstrap/Spinner';
-import MovieCard from './MovieCard';
+import MovieCard from '../MovieCard';
 import classes from './index.module.css';
 
-const MovieCardContainer = () => {
-  const { list, isLoading, error } = useSelector(state => state.movies, shallowEqual);
+const MovieCardContainer = (props) => {
+  const { error, isLoading, movies } = props;
   if (isLoading) return (
     <Spinner
       animation="border"
@@ -18,11 +18,11 @@ const MovieCardContainer = () => {
     <p>We're sorry, something went wrong.  Please try refreshing your browser.</p>
   )
 
-  if (list.length === 0) return (
+  if (movies.length === 0) return (
     <p>Your search did not match any movies.</p>
   )
 
-  const shortList = list.slice(0, 12);
+  const shortList = movies.slice(0, 12);
 
   return (
     <CardDeck className="d-flex justify-content-center flex-wrap mt-4">
@@ -38,6 +38,12 @@ const MovieCardContainer = () => {
       }
     </CardDeck>
   );
+};
+
+MovieCardContainer.propTypes = {
+  error: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default MovieCardContainer;
