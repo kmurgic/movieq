@@ -6,7 +6,7 @@ const Discover = () => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar handleSearch={() => { }} />
       <MovieCardContainer />
     </>
   );

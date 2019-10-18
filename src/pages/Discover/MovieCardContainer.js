@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Spinner from 'react-bootstrap/Spinner';
-
 import MovieCard from './MovieCard';
 import classes from './index.module.css';
 
@@ -15,7 +14,7 @@ const MovieCardContainer = () => {
       className={`${classes.spinner} ml-auto mr-auto d-inline-block`}
     />
   );
-  if (error || !list) return (
+  if (error) return (
     <p>We're sorry, something went wrong.  Please try refreshing your browser.</p>
   )
 

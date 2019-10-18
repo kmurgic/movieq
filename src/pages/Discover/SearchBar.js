@@ -11,7 +11,11 @@ const SearchBar = props => {
   const { handleSearch } = props;
 
   return (
-    <Form className="d-flex justify-content-center flex-nowrap mb-4" inline>
+    <Form
+      className="d-flex justify-content-center flex-nowrap mb-4"
+      inline
+      onSubmit={handleSearch}
+    >
       <FormControl
         type="text"
         placeholder="Search for Movies..."
@@ -19,6 +23,7 @@ const SearchBar = props => {
       />
       <Button
         className={classes['search-button']}
+        type="submit"
         variant="outline-secondary"
       >
         <FontAwesomeIcon icon={faSearch} onClick={handleSearch} />
