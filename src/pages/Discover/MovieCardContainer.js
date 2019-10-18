@@ -29,6 +29,7 @@ const MovieCardContainer = () => {
     <CardDeck className="d-flex justify-content-center flex-wrap mt-4">
       {shortList.map(movieData => (
         <MovieCard
+          key={movieData.id}
           overview={movieData.overview}
           posterPath={movieData.poster_path}
           releaseDate={movieData.release_date}
