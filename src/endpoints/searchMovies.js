@@ -1,20 +1,16 @@
-const options = {
-  method: 'GET',
-  mode: 'cors',
-};
-
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
 async function searchMovies(query) {
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}=en-US`
-    + `&query=${query}&page=1&include_adult=false`
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US`
+    + `&query=${query}&page1&include_adult=false`
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url);
     const json = await (response.json());
+    if (json.success === false) throw new Error(json.status_message);
     const results = json.results;
     return results;
-  } catch (error) {
-    throw new Error(error);
+  } catch (e) {
+    throw new Error(e);
   }
 }
 

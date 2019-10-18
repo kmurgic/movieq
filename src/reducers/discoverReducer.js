@@ -1,19 +1,20 @@
 const initialState = {
   error: false,
-  loading: false,
+  firstLoad: true,
+  isLoading: false,
   movies: [],
 };
 
 const discoverReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_MOVIES_REQUEST':
-      return { ...state, error: false, loading: true };
+      return { ...state, error: false, firstLoad: false, isLoading: true };
     case 'FETCH_MOVIES_SUCCESS':
       return {
-        ...state, error: false, loading: false, movies: action.payload,
+        ...state, error: false, isLoading: false, movies: action.payload,
       };
     case 'FETCH_MOVIES_ERROR':
-      return { ...state, error: action.payload, loading: false };
+      return { ...state, error: action.payload, isLoading: false };
     default:
       return state;
   }

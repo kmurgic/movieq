@@ -3,22 +3,23 @@ import { shallow } from 'enzyme';
 import Discover from '../index';
 
 const mockMovieList = [
-  'm1',
-  'm2',
-  'm3',
+  { id: 'm1' },
+  { id: 'm2' },
+  { id: 'm3' },
 ];
 
 const mockState = {
-  movies: {
+  discover: {
     isLoading: false,
     error: false,
-    list: mockMovieList,
+    movies: mockMovieList,
   }
 }
 
 jest.mock('react-redux', () => ({
   useSelector: fn => fn(mockState),
-}))
+}));
+
 it('renders without crashing', () => {
   shallow(<Discover />);
 });

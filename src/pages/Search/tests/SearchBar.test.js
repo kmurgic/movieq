@@ -13,6 +13,6 @@ const wrapper = shallow(
 
 it('should search on form submission', () => {
   const form = wrapper.find(Form);
-  form.invoke('onSubmit')();
+  form.invoke('onSubmit')({ preventDefault: () => { } });
   expect(handleSearchSpy).toHaveBeenCalled();
 });

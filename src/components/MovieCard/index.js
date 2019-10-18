@@ -13,11 +13,13 @@ const MovieCard = props => {
     lastCharacterBeforePunctuationOrSpace) + 1;
   const clippedOverview = `${overview.slice(0, clipOverviewIndex)}...`;
   const imageBasePath = 'https://image.tmdb.org/t/p/w200/'
+  const fallbackImage = 'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png'
+  const imgSrc = posterPath ? `${imageBasePath}${posterPath}` : fallbackImage;
 
   return (
     <Card className={`${classes.card} mb-4 d-flex-inline shadow`}>
       <Row className="h-100">
-        <Card.Img className="h-100 col-sm-6 pr-sm-0" variant="top" src={`${imageBasePath}${posterPath}`} />
+        <Card.Img className="h-100 col-sm-6 pr-sm-0" variant="top" src={imgSrc} />
         <Card.Body
           className="d-flex flex-column justify-content-between h-100 col-sm-6"
         >
