@@ -9,6 +9,21 @@ it('fetches top movies', async () => {
   global.fetch.mockRestore();
 });
 
+it('throws errors on unsuccessful resolved promises', async () => {
+  jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve({
+    json: () => Promise.resolve({
+      success: false,
+      status_message: 'fetch error',
+    }),
+  }));
+  try {
+    await fetchTopMovies();
+  } catch (e) {
+    expect(e).toEqual(new Error('fetch error'));
+  }
+  global.fetch.mockRestore();
+});
+
 it('throws errors', async () => {
   jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject('fetch error'));
   try {

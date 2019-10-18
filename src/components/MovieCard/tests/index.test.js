@@ -35,3 +35,11 @@ it('should render the title only if not passed a release year', () => {
   const textInCardTitle = cardTitle.props().children;
   expect(textInCardTitle).toEqual(expectedCardTitle);
 });
+
+it('should render with a fallback image if not passed a poster_path', () => {
+  wrapper.setProps({ posterPath: null });
+  const fallbackImage = 'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png'
+  const cardImage = wrapper.find(Card.Img);
+  const cardImageSrc = cardImage.props().src;
+  expect(cardImageSrc).toEqual(fallbackImage);
+});
