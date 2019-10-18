@@ -11,11 +11,11 @@ const SearchBar = props => {
   const { handleSearch } = props;
 
   return (
-    <Form className="d-flex justify-content-center mb-4" inline>
+    <Form className="d-flex justify-content-center flex-nowrap mb-4" inline>
       <FormControl
         type="text"
-        placeholder="Search for Movies to Add to Your Queue"
-        className={`${classes['search-input']} w-75 mr-0`}
+        placeholder="Search for Movies..."
+        className={`${classes['search-input']} w-50 mr-0`}
       />
       <Button
         className={classes['search-button']}

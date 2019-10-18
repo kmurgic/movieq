@@ -1,17 +1,30 @@
 form .search-input {
   border-radius: 0;
+  min-width: 15em;
+  width: 75%;
   max-width: 40em;
+  position: relative;
+  left: 1.3125em;
 }
 
 form .search-button {
   border-radius: 0;
   position: relative;
-  right: 2.625em;
+  right: 1.3125em;
 }
 
 body .card {
-  min-width: 24em;
+  min-width: 27em;
   max-width: 30em;
+}
+
+@media only screen and (max-width: 575px) {
+  body .card {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 14em;
+    max-width: 16em;
+  }
 }
 
 body .spinner {
