@@ -11,7 +11,7 @@ const MovieCardContainer = (props) => {
     <Spinner
       animation="border"
       variant="primary"
-      className={`${classes.spinner} ml-auto mr-auto d-inline-block`}
+      className={`${classes.spinner} ml-auto mr-auto d-block`}
     />
   );
   if (error) return (
