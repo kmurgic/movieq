@@ -1,7 +1,8 @@
 import rootReducer from '../index';
 
-jest.mock('../moviesReducer', () => () => 'movies');
+jest.mock('../discoverReducer', () => () => 'discover');
+jest.mock('../searchReducer', () => () => 'search');
 
 it('should call each reducer and combine results into one state', () => {
-  expect(rootReducer()).toEqual({ movies: 'movies' });
+  expect(rootReducer()).toEqual({ discover: 'discover', search: 'search' });
 });

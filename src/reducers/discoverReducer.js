@@ -1,16 +1,16 @@
 const initialState = {
   error: false,
   loading: false,
-  list: [],
+  movies: [],
 };
 
-const moviesReducer = (state = initialState, action) => {
+const discoverReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_MOVIES_REQUEST':
-      return { ...state, loading: true };
+      return { ...state, error: false, loading: true };
     case 'FETCH_MOVIES_SUCCESS':
       return {
-        ...state, error: false, loading: false, list: action.payload,
+        ...state, error: false, loading: false, movies: action.payload,
       };
     case 'FETCH_MOVIES_ERROR':
       return { ...state, error: action.payload, loading: false };
@@ -19,4 +19,4 @@ const moviesReducer = (state = initialState, action) => {
   }
 };
 
-export default moviesReducer;
+export default discoverReducer;
