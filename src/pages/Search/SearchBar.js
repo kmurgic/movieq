@@ -10,15 +10,17 @@ import classes from './index.module.css';
 const SearchBar = props => {
   const { handleSearch } = props;
   const [query, setQuery] = useState('');
-  
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleSearch(query)
+  }
+
   return (
     <Form
       className="d-flex justify-content-center flex-nowrap mb-4"
       inline
-      onSubmit={(e) => {
-        e.preventDefault()
-        handleSearch(query)
-      }}
+      onSubmit={handleSubmit}
     >
       <FormControl
         type="text"

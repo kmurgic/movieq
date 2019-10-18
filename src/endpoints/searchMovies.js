@@ -6,7 +6,7 @@ async function searchMovies(query) {
   try {
     const response = await fetch(url);
     const json = await (response.json());
-    if (json.success === false) throw new Error(json.status_message);
+    if (json.success === false) throw json.status_message;
     const results = json.results;
     return results;
   } catch (e) {
