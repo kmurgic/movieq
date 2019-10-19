@@ -5,6 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import sagas from '..';
 import fetchTopMovies from '../../endpoints/fetchTopMovies';
 import searchMovies from '../../endpoints/searchMovies';
+import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError } from '../../actions';
 
 it('fetches movies', () => {
   const fakeMovies = ['movie1', 'movie2'];
@@ -13,8 +14,8 @@ it('fetches movies', () => {
     .provide([
       [call(fetchTopMovies), fakeMovies],
     ])
-    .put({ type: 'FETCH_MOVIES_SUCCESS', payload: fakeMovies })
-    .dispatch({ type: 'FETCH_MOVIES_REQUEST' })
+    .put(fetchMoviesSuccess(fakeMovies))
+    .dispatch(fetchMoviesRequest())
     .run();
 });
 
@@ -25,8 +26,8 @@ it('handles fetch top movie errors', () => {
     .provide([
       [matchers.call.fn(fetchTopMovies), throwError(error)],
     ])
-    .put({ type: 'FETCH_MOVIES_ERROR', payload: error.message })
-    .dispatch({ type: 'FETCH_MOVIES_REQUEST' })
+    .put(fetchMoviesError(error.message))
+    .dispatch(fetchMoviesRequest())
     .run();
 });
 
@@ -37,8 +38,8 @@ it('searches for movies', () => {
     .provide([
       [call(searchMovies, 'foo'), fakeMovies],
     ])
-    .put({ type: 'QUERY_MOVIES_SUCCESS', payload: fakeMovies })
-    .dispatch({ type: 'QUERY_MOVIES_REQUEST', payload: 'foo' })
+    .put(queryMoviesSuccess(fakeMovies))
+    .dispatch(queryMoviesRequest('foo'))
     .run();
 });
 
@@ -49,7 +50,7 @@ it('handles search errors', () => {
     .provide([
       [matchers.call.fn(searchMovies, 'foo'), throwError(error)],
     ])
-    .put({ type: 'QUERY_MOVIES_ERROR', payload: error.message })
-    .dispatch({ type: 'QUERY_MOVIES_REQUEST', payload: 'foo' })
+    .put(queryMoviesError(error.message))
+    .dispatch(queryMoviesRequest('foo'))
     .run();
 });

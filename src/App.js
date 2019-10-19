@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { topMoviesRequest } from './actions';
+import { fetchMoviesRequest } from './actions';
 import Navigation from './Navigation';
 import Queues from './pages/Queues';
 import Discover from './pages/Discover';
@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(topMoviesRequest());
+    dispatch(fetchMoviesRequest());
   }, [dispatch]);
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Search from '../index';
 import SearchBar from '../SearchBar';
-import { searchMoviesRequest } from '../../../actions';
+import { queryMoviesRequest } from '../../../actions';
 
 const mockMovieList = [
   { id: 'm1' },
@@ -32,6 +32,6 @@ it('dispatches the correct action on search', () => {
   const wrapper = shallow(<Search />);
   const searchBar = wrapper.find(SearchBar);
   searchBar.invoke('handleSearch')('foo');
-  const action = searchMoviesRequest('foo');
+  const action = queryMoviesRequest('foo');
   expect(mockDispatch).toHaveBeenCalledWith(action);
 });

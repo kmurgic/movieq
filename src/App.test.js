@@ -29,6 +29,6 @@ it('renders without crashing', () => {
   expect(wrapper);
 });
 
-it('dispatches topMoviesRequest', () => {
+it('dispatches fetchMoviesRequest', () => {
   expect(mockDispatch).toHaveBeenCalled();
 });

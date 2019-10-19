@@ -1,5 +1,5 @@
 import searchReducer from '../searchReducer';
-import { searchMoviesRequest } from '../../actions';
+import { queryMoviesRequest } from '../../actions';
 
 const initialState = {
   error: false,
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 it('should update loading to false on fetch request', () => {
-  const action = searchMoviesRequest('search text');
+  const action = queryMoviesRequest('search text');
   expect(searchReducer(initialState, action).isLoading).toEqual(true);
 });
 

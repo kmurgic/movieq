@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import SearchBar from './SearchBar';
-import { searchMoviesRequest } from '../../actions';
+import { queryMoviesRequest } from '../../actions';
 import MovieCardContainer from '../../components/MovieCardContainer';
 
 const Search = () => {
   const dispatch = useDispatch();
   const { error, firstLoad, isLoading, movies } = useSelector(state => state.search, shallowEqual);
   const handleSearch = (query) => {
-    dispatch(searchMoviesRequest(query));
+    dispatch(queryMoviesRequest(query));
   };
 
   return (
