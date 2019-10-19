@@ -12,9 +12,9 @@ const mockMovieList = [
 
 const mockState = {
   search: {
+    error: false,
     firstLoad: false,
     isLoading: false,
-    error: false,
     movies: mockMovieList,
   }
 }

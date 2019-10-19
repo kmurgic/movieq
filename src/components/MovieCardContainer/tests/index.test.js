@@ -26,6 +26,7 @@ beforeEach(() => {
   wrapper = shallow(
     <MovieCardContainer
       error={false}
+      firstLoad={false}
       isLoading={false}
       movies={mockMovieList}
     />);
@@ -53,5 +54,12 @@ it('renders an error message when there is an error', () => {
 it('renders a message when there are no movies in the list', () => {
   wrapper.setProps({ movies: [] });
   expect(wrapper.find('p').length).toEqual(1);
+  expect(wrapper.find(MovieCard).length).toEqual(0);
+});
+
+it('renders an empty fragment on first load (before any data has been fetched)', () => {
+  wrapper.setProps({ firstLoad: true, movies: [] });
+  expect(wrapper.find('p').length).toEqual(0);
+  expect(wrapper.find(Spinner).length).toEqual(0);
   expect(wrapper.find(MovieCard).length).toEqual(0);
 });

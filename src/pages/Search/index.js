@@ -6,7 +6,7 @@ import MovieCardContainer from '../../components/MovieCardContainer';
 
 const Search = () => {
   const dispatch = useDispatch();
-  const { error, isLoading, movies } = useSelector(state => state.search, shallowEqual);
+  const { error, firstLoad, isLoading, movies } = useSelector(state => state.search, shallowEqual);
   const handleSearch = (query) => {
     dispatch(searchMoviesRequest(query));
   };
@@ -16,6 +16,7 @@ const Search = () => {
       <SearchBar handleSearch={handleSearch} />
       <MovieCardContainer
         error={!!error}
+        firstLoad={firstLoad}
         isLoading={isLoading}
         movies={movies}
       />

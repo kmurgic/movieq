@@ -10,8 +10,9 @@ const mockMovieList = [
 
 const mockState = {
   discover: {
-    isLoading: false,
     error: false,
+    firstLoad: false,
+    isLoading: false,
     movies: mockMovieList,
   }
 }
