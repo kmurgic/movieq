@@ -12,7 +12,7 @@ const Queues = () => {
     <>
       <h1 className='mb-5'>My Queues</h1>
       <div className="d-flex mt-4 flex-wrap justify-content-between w-100">
-        <div className={`${classes.queue} m-4 d-inline-block`}>
+        <div className={`${classes.queue} m-sm-4 d-inline-block`}>
           <h2 className="text-center mb-3">Main Queue</h2>
           <ListGroup className="w-100">
             {movies.map((movie, index) => {

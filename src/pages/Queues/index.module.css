@@ -1,4 +1,5 @@
 .queue {
+  min-width: 18em;
   max-width: 40em;
   width: 50%;
 }
@@ -16,7 +17,19 @@ body .thumbnail {
   font-weight: bold;
 }
 
+/* Bootstrap xs and sm */
+@media only screen and (max-width: 767px) {
+  .queue {
+    width: 80%;
+  }
+}
+
+/* Bootstrap xs */
 @media only screen and (max-width: 575px) {
+  .queue {
+    margin: 1em;
+  }
+
   body .thumbnail {
     display: none;
   }
