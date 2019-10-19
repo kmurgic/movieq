@@ -5,7 +5,6 @@ import classes from './index.module.css';
 
 const NotificationContainer = (props) => {
   const notifications = useSelector(state => state.notifications.notificationList);
-
   return (
     <div className={classes['notification_container']}>
       {notifications.map(notification => (

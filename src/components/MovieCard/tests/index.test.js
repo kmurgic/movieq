@@ -3,10 +3,25 @@ import { shallow } from 'enzyme';
 import MovieCard from '../index';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+const mockMovieList = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+];
+
+const mockState = {
+  queues: {
+    queueList: [{
+      id: 1,
+      movies: mockMovieList,
+    }],
+  }
+};
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn().mockImplementation(() => mockDispatch),
+  useSelector: fn => fn(mockState),
 }));
 
 const wrapper = shallow(
@@ -19,6 +34,10 @@ const wrapper = shallow(
     title="Movie Title"
   />,
 );
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 it('should render a clipped version of the overview', () => {
   const expectedClippedOverview = 'This is a long block of text that needs to be clipped to become a shorter'
@@ -51,8 +70,15 @@ it('should render with a fallback image if not passed a poster_path', () => {
   expect(cardImageSrc).toEqual(fallbackImage);
 });
 
-it('should dispatch add item to queue action on add to queue button click', () => {
+it('should dispatch notification add action when movie is already in list', () => {
   const addToQueue = wrapper.find(Button);
   addToQueue.invoke('onClick')();
-  expect(mockDispatch).toHaveBeenCalled();
+  expect(mockDispatch).toHaveBeenCalledTimes(1);
+});
+
+it('should dispatch add queue item and notification add actions for a new movie', () => {
+  wrapper.setProps({ movieId: 53 });
+  const addToQueue = wrapper.find(Button);
+  addToQueue.invoke('onClick')();
+  expect(mockDispatch).toHaveBeenCalledTimes(2);
 });

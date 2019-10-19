@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import './custom.scss';
 import './App.css';
 import Search from './pages/Search';
+import NotificationContainer from './components/NotificationContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
     <Router>
       <div className="App">
         <Navigation />
+        <NotificationContainer />
         <Switch>
           <Route path="/discover">
             <Discover />

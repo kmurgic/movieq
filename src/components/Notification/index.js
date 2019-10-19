@@ -17,7 +17,7 @@ const Notification = props => {
       <Toast.Header className="text-dark">
         <strong className="mr-auto">{heading}</strong>
       </Toast.Header>
-      <Toast.Body className="text-light">{body}</Toast.Body>
+      <Toast.Body className="pl-3 pr-3 text-white">{body}</Toast.Body>
     </Toast>
   )
 }
@@ -31,7 +31,7 @@ Notification.propTypes = {
   notificationId: PropTypes.number.isRequired,
   heading: PropTypes.string,
   body: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['success', 'danger']),
+  variant: PropTypes.oneOf(['success', 'danger', 'secondary']),
 }
 
 export default Notification;

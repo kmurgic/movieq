@@ -1,15 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import classes from './index.module.css'
-import { queueItemAdd } from '../../actions/';
+import { queueItemAdd, notificationAdd } from '../../actions/';
 
 const MovieCard = props => {
   const { movieId, overview, posterPath, releaseDate, title } = props;
   const dispatch = useDispatch();
+  const queues = useSelector(state => state.queues.queueList);
 
   const releaseYear = releaseDate.slice(0, 4);
   const lastCharacterBeforePunctuationOrSpace = /[\w'"][:.\s,!?-](?!.*[\w'"][:.\s,!?-])/
@@ -23,6 +24,15 @@ const MovieCard = props => {
 
   const movie = { id: movieId, posterSrc, title: cardTitleText };
   const handleAddToQueueClick = () => {
+    const { movies } = queues[0];
+    // Avoid adding a movie to a list twice!
+    if (movies.find(movie => movie.id === movieId)) {
+      const duplicateMessage = 'Movie is already in queue';
+      dispatch(notificationAdd('Oops', duplicateMessage, 'secondary'));
+      return;
+    }
+    const successMessage = 'Movie Added To Queue';
+    dispatch(notificationAdd('Success', successMessage, 'success'));
     dispatch(queueItemAdd(1, movie));
   };
 

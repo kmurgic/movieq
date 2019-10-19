@@ -1,5 +1,6 @@
 .notification_container {
   position: fixed;
-  top: 4.5em;
-  right: 0;
+  bottom: 1em;
+  left: 1em;
+  z-index: 2; 
 }
