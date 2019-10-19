@@ -10,8 +10,8 @@ import { queueItemAdd, notificationAdd } from '../../actions/';
 const MovieCard = props => {
   const { movieId, overview, posterPath, releaseDate, title } = props;
   const dispatch = useDispatch();
-  const queues = useSelector(state => state.queues.queueList);
-
+  const { queueList } = useSelector(state => state.queues);
+  const nextId = useSelector(state => state.notifications.nextId);
   const releaseYear = releaseDate.slice(0, 4);
   const lastCharacterBeforePunctuationOrSpace = /[\w'"][:.\s,!?-](?!.*[\w'"][:.\s,!?-])/
   const clipOverviewIndex = (overview.slice(0, 140)).search(
@@ -24,15 +24,15 @@ const MovieCard = props => {
 
   const movie = { id: movieId, posterSrc, title: cardTitleText };
   const handleAddToQueueClick = () => {
-    const { movies } = queues[0];
+    const { movies } = queueList[0];
     // Avoid adding a movie to a list twice!
     if (movies.find(movie => movie.id === movieId)) {
       const duplicateMessage = 'Movie is already in queue';
-      dispatch(notificationAdd('Oops', duplicateMessage, 'secondary'));
+      dispatch(notificationAdd('Oops', duplicateMessage, 'secondary', nextId));
       return;
     }
     const successMessage = 'Movie Added To Queue';
-    dispatch(notificationAdd('Success', successMessage, 'success'));
+    dispatch(notificationAdd('Success', successMessage, 'success', nextId));
     dispatch(queueItemAdd(1, movie));
   };
 

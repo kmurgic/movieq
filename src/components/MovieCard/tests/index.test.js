@@ -15,6 +15,9 @@ const mockState = {
       id: 1,
       movies: mockMovieList,
     }],
+  },
+  notifications: {
+    nextId: 2,
   }
 };
 

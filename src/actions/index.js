@@ -76,9 +76,10 @@ export const queueItemRemove = (queueId, movieId) => ({
   },
 });
 
-export const notificationAdd = (heading, body, variant) => ({
+export const notificationAdd = (heading, body, variant, notificationId) => ({
   type: NOTIFICATION_ADD,
   payload: {
+    notificationId,
     heading,
     body,
     variant,
