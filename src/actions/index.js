@@ -2,6 +2,8 @@ import {
   FETCH_MOVIES_REQUEST, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_ERROR, QUERY_MOVIES_SUCCESS,
   QUERY_MOVIES_ERROR, QUEUE_ADD, QUEUE_REMOVE, QUEUE_ITEM_ADD, QUEUE_ITEM_REORDER,
   QUEUE_ITEM_REMOVE,
+  NOTIFICATION_ADD,
+  NOTIFICATION_REMOVE,
 } from './types';
 import { QUERY_MOVIES_REQUEST } from './types';
 
@@ -72,4 +74,20 @@ export const queueItemRemove = (queueId, movieId) => ({
     queueId,
     movieId,
   },
+});
+
+export const notificationAdd = (heading, body, variant) => ({
+  type: NOTIFICATION_ADD,
+  payload: {
+    heading,
+    body,
+    variant,
+  }
+});
+
+export const notificationRemove = (notificationId) => ({
+  type: NOTIFICATION_REMOVE,
+  payload: {
+    notificationId,
+  }
 });
