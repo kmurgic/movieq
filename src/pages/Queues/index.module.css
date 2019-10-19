@@ -1,0 +1,23 @@
+.queue {
+  max-width: 40em;
+  width: 50%;
+}
+
+body .queue-item {
+  color: #333;
+}
+
+body .thumbnail {
+  height: 6em;
+}
+
+.movie-title {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 575px) {
+  body .thumbnail {
+    display: none;
+  }
+}
