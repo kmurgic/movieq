@@ -43,6 +43,18 @@ it('should remove a queue', () => {
   expect(stateAfterAction.queueList.length).toEqual(0);
 });
 
+it('should leave state unchanged on remove action called with invalid queue id', () => {
+  const action = {
+    type: 'QUEUE_REMOVE',
+    payload: {
+      queueId: 2,
+    },
+  };
+
+  const stateAfterAction = queuesReducer(stateWithMovies, action);
+  expect(stateAfterAction).toEqual(stateWithMovies);
+});
+
 it('should add an item to a queue', () => {
   const action = {
     type: 'QUEUE_ITEM_ADD',
@@ -158,6 +170,32 @@ it('should remove a queue item', () => {
 
   const stateAfterAction = queuesReducer(stateWithMovies, action);
   expect(stateAfterAction.queueList[0].movies).toEqual(expectedNewMovies);
+});
+
+it('should leave state unchanged on remove action called with invalid queue id', () => {
+  const action = {
+    type: 'QUEUE_ITEM_REMOVE',
+    payload: {
+      queueId: 2,
+      movieId: 'm2'
+    },
+  };
+
+  const stateAfterAction = queuesReducer(stateWithMovies, action);
+  expect(stateAfterAction).toEqual(stateWithMovies);
+});
+
+it('should leave state unchanged on remove action called with invalid movie id', () => {
+  const action = {
+    type: 'QUEUE_ITEM_REMOVE',
+    payload: {
+      queueId: 1,
+      movieId: 'm6'
+    },
+  };
+
+  const stateAfterAction = queuesReducer(stateWithMovies, action);
+  expect(stateAfterAction).toEqual(stateWithMovies);
 });
 
 it('should leave state unchanged on mispelled action', () => {
