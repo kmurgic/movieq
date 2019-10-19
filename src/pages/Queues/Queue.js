@@ -1,5 +1,5 @@
 import React from 'react';
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import ListGroup from 'react-bootstrap/ListGroup';
 import classes from './index.module.css'
 import PropTypes from 'prop-types';

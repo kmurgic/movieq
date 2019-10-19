@@ -39,11 +39,11 @@ const QueueItem = props => {
 }
 
 QueueItem.propTypes = {
-  id: PropTypes.number,
-  index: PropTypes.number,
-  posterSrc: PropTypes.string,
-  title: PropTypes.string,
-  variant: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  posterSrc: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['info', 'light']).isRequired,
 }
 
 export default QueueItem;

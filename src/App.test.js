@@ -16,6 +16,8 @@ jest.mock('react-router-dom', () => ({
   Route: () => <div />,
 }));
 
+jest.mock('./pages/Queues', () => () => <div />);
+
 beforeEach(() => {
   wrapper = mount(<App />);
 });
@@ -24,7 +26,6 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-
 it('renders without crashing', () => {
   expect(wrapper);
 });
@@ -32,3 +33,5 @@ it('renders without crashing', () => {
 it('dispatches fetchMoviesRequest', () => {
   expect(mockDispatch).toHaveBeenCalled();
 });
+
+jest.clearAllMocks();
