@@ -5,19 +5,19 @@ import MovieCard from '../../MovieCard';
 import Spinner from 'react-bootstrap/Spinner';
 
 const mockMovieList = [
-  { id: 'm1' },
-  { id: 'm2' },
-  { id: 'm3' },
-  { id: 'm4' },
-  { id: 'm5' },
-  { id: 'm6' },
-  { id: 'm7' },
-  { id: 'm8' },
-  { id: 'm9' },
-  { id: 'm10' },
-  { id: 'm11' },
-  { id: 'm12' },
-  { id: 'm13' },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+  { id: 10 },
+  { id: 11 },
+  { id: 12 },
+  { id: 13 },
 ];
 
 let wrapper;

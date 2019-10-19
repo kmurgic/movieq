@@ -91,7 +91,7 @@ const removeQueueItem = (state, action) => {
   return { ...state, queueList: queueListCopy };
 };
 
-const searchReducer = (state = initialState, action) => {
+const queuesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'QUEUE_ADD':
       return addQueue(state, action);
@@ -108,4 +108,4 @@ const searchReducer = (state = initialState, action) => {
   }
 };
 
-export default searchReducer;
+export default queuesReducer;

@@ -33,6 +33,7 @@ const MovieCardContainer = (props) => {
         <MovieCard
           key={movieData.id}
           overview={movieData.overview}
+          movieId={movieData.id}
           posterPath={movieData.poster_path}
           releaseDate={movieData.release_date}
           title={movieData.title}

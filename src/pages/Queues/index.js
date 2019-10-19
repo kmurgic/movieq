@@ -1,17 +1,17 @@
 import React from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 import classes from './index.module.css'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-const movies = [
-  { id: 'm1', title: 'Movie 1 (2019)' },
-  { id: 'm2', title: 'Movie 2 (2017)' },
-  { id: 'm3', title: 'Movie 3 (2015)' },
-];
 
 const Queues = () => {
+
+  const queueList = useSelector(state => state.queues.queueList, shallowEqual);
+  const movies = queueList[0].movies;
+
   return (
     <>
       <h1 className='mb-5'>My Queues</h1>
@@ -20,20 +20,22 @@ const Queues = () => {
           <h2 className="text-center mb-3">Main Queue</h2>
           <ListGroup className="w-100">
             {movies.map((movie, index) => {
+              const { id, posterSrc, title } = movie;
               const variant = index % 2 ? 'info' : 'light';
               return (
                 <ListGroup.Item
-                  key={movie.id}
+                  key={id}
+                  as="div"
                   action
                   className={`${classes['queue-item']} d-flex justify-content-between`
                     + ' align-items-center pl-sm-0 pt-sm-0 pb-sm-0'}
                   variant={variant}>
                   <Image
                     className={`${classes.thumbnail} mr-4`}
-                    src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/a4BfxRK8dBgbQqbRxPs8kmLd8LG.jpg"
+                    src={posterSrc}
                     thumbnail
                   />
-                  <span className={classes['movie-title']}>{movie.title}</span>
+                  <span className={classes['movie-title']}>{title}</span>
                   <Button size='lg' variant="outline-danger">
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </Button>

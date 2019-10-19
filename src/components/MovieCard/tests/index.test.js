@@ -2,9 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MovieCard from '../index';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+const mockDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn().mockImplementation(() => mockDispatch),
+}));
 
 const wrapper = shallow(
   <MovieCard
+    movieId={1}
     overview={'This is a long block of text that needs to be clipped to become a shorter'
       + 'block of text that ends at the end of a word and then follwed by, an ellipsis'}
     posterPath="testpath.url"
@@ -42,4 +49,10 @@ it('should render with a fallback image if not passed a poster_path', () => {
   const cardImage = wrapper.find(Card.Img);
   const cardImageSrc = cardImage.props().src;
   expect(cardImageSrc).toEqual(fallbackImage);
+});
+
+it('should dispatch add item to queue action on add to queue button click', () => {
+  const addToQueue = wrapper.find(Button);
+  addToQueue.invoke('onClick')();
+  expect(mockDispatch).toHaveBeenCalled();
 });
