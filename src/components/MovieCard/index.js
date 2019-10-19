@@ -24,14 +24,15 @@ const MovieCard = props => {
 
   const movie = { id: movieId, posterSrc, title: cardTitleText };
   const handleAddToQueueClick = () => {
-    const { movies } = queueList[0];
+    const { movies, name: queueName } = queueList[0];
+
     // Avoid adding a movie to a list twice!
     if (movies.find(movie => movie.id === movieId)) {
-      const duplicateMessage = 'Movie is already in queue';
+      const duplicateMessage = `${title} is already in ${queueName}`;
       dispatch(notificationAdd('Oops', duplicateMessage, 'secondary', nextId));
       return;
     }
-    const successMessage = 'Movie Added To Queue';
+    const successMessage = `${title} Added To ${queueName}`;
     dispatch(notificationAdd('Success', successMessage, 'success', nextId));
     dispatch(queueItemAdd(1, movie));
   };

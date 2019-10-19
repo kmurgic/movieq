@@ -1,13 +1,3 @@
-body .card {
-  min-width: 27em;
-  max-width: 30em;
-}
-
-@media only screen and (max-width: 575px) {
-  body .card {
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 14em;
-    max-width: 16em;
-  }
+body .notification {
+  max-width: 16em;
 }
