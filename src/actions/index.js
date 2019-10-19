@@ -35,21 +35,21 @@ export const queryMoviesError = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const queAdd = (name) => ({
+export const queueAdd = (name) => ({
   type: QUEUE_ADD,
   payload: {
     name,
   },
 });
 
-export const queRemove = (queueId) => ({
+export const queueRemove = (queueId) => ({
   type: QUEUE_REMOVE,
   payload: {
     queueId,
   },
 });
 
-export const queItemAdd = (queueId, movie) => ({
+export const queueItemAdd = (queueId, movie) => ({
   type: QUEUE_ITEM_ADD,
   payload: {
     queueId,
@@ -57,7 +57,7 @@ export const queItemAdd = (queueId, movie) => ({
   },
 });
 
-export const queItemReorder = (queueId, startPos, endPos) => ({
+export const queueItemReorder = (queueId, startPos, endPos) => ({
   type: QUEUE_ITEM_REORDER,
   payload: {
     queueId,
@@ -66,7 +66,7 @@ export const queItemReorder = (queueId, startPos, endPos) => ({
   },
 });
 
-export const queItemRemove = (queueId, movieId) => ({
+export const queueItemRemove = (queueId, movieId) => ({
   type: QUEUE_ITEM_REMOVE,
   payload: {
     queueId,
