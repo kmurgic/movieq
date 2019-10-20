@@ -7,6 +7,11 @@ import fetchTopMovies from '../../endpoints/fetchTopMovies';
 import searchMovies from '../../endpoints/searchMovies';
 import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd, queueAdd } from '../../actions';
 
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 it('fetches movies', () => {
   const fakeMovies = ['movie1', 'movie2'];
 
