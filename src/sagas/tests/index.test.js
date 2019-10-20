@@ -5,7 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import sagas from '..';
 import discoverMovies from '../../endpoints/discoverMovies';
 import searchMovies from '../../endpoints/searchMovies';
-import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd, queueAdd } from '../../actions';
+import { discoverMoviesSuccess, discoverMoviesRequest, discoverMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd, queueAdd } from '../../actions';
 
 
 afterEach(() => {
@@ -17,10 +17,10 @@ it('fetches movies', () => {
 
   return expectSaga(sagas, discoverMovies)
     .provide([
-      [call(discoverMovies), fakeMovies],
+      [call(discoverMovies, { genre: 'Adventure' }), fakeMovies],
     ])
-    .put(fetchMoviesSuccess(fakeMovies))
-    .dispatch(fetchMoviesRequest())
+    .put(discoverMoviesSuccess(fakeMovies))
+    .dispatch(discoverMoviesRequest({ genre: 'Adventure' }))
     .run();
 });
 
@@ -31,8 +31,8 @@ it('handles fetch top movie errors', () => {
     .provide([
       [matchers.call.fn(discoverMovies), throwError(error)],
     ])
-    .put(fetchMoviesError(error.message))
-    .dispatch(fetchMoviesRequest())
+    .put(discoverMoviesError(error.message))
+    .dispatch(discoverMoviesRequest())
     .run();
 });
 

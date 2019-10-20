@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchMoviesRequest } from './actions';
+import { discoverMoviesRequest } from './actions';
 import Navigation from './Navigation';
 import NotificationContainer from './components/NotificationContainer';
 import Discover from './pages/Discover';
@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMoviesRequest());
+    dispatch(discoverMoviesRequest());
   }, [dispatch]);
 
   return (

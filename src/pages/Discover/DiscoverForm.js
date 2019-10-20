@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import classes from './index.module.css';
 import { genres, ratings } from './selectOptions';
+import { discoverMoviesRequest } from '../../actions';
 
-const initialOptions = {
+const initialFilters = {
   genre: 'Any',
   maxYear: 'Any',
   minYear: 'Any',
@@ -14,13 +16,15 @@ const initialOptions = {
 const DiscoverForm = () => {
   const thisYear = new Date().getFullYear();
   const yearsSince1900 = thisYear - 1900;
-
-  const [options, setOptions] = useState(initialOptions);
+  const [filters, setFilters] = useState(initialFilters);
+  const dispatch = useDispatch();
 
   const handleOptionChange = (e) => {
     const { name, value } = e.currentTarget;
-    setOptions(prevOptions => ({ ...prevOptions, [name]: value }));
-  }
+    const newFilters = { ...filters, [name]: value };
+    setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+    dispatch(discoverMoviesRequest(newFilters));
+  };
 
   return (
     <Form className="d-flex justify-content-center flex-wrap">
@@ -33,15 +37,15 @@ const DiscoverForm = () => {
           as="select"
           name="genre"
           onChange={handleOptionChange}
-          value={options.genre}
+          value={filters.genre}
         >
           <option key={'Any'} value={'Any'}>
             {'Any'}
           </option>
           {genres.map((genre) => {
             return (
-              <option key={genre} value={genre}>
-                {genre}
+              <option key={genre.id} value={genre.id}>
+                {genre.name}
               </option>
             )
           })}
@@ -56,12 +60,12 @@ const DiscoverForm = () => {
           as="select"
           name="maxYear"
           onChange={handleOptionChange}
-          value={options.maxYear}
+          value={filters.maxYear}
         >
           <option key={'Any'} value={'Any'}>
             {'Any'}
           </option>
-          {/* Add options for all the years from 1900 until now */}
+          {/* Add filters for all the years from 1900 until now */}
           {[...Array(yearsSince1900 + 1)].map((_, yearsAgo) => {
             return (
               <option key={yearsAgo} value={(thisYear - yearsAgo).toString()}>
@@ -80,12 +84,12 @@ const DiscoverForm = () => {
           as="select"
           name="minYear"
           onChange={handleOptionChange}
-          value={options.minYear}
+          value={filters.minYear}
         >
           <option key={'Any'} value={'Any'}>
             {'Any'}
           </option>
-          {/* Add options for all the years from 1900 until now */}
+          {/* Add filters for all the years from 1900 until now */}
           {[...Array(yearsSince1900 + 1)].map((_, yearsAgo) => {
             return (
               <option key={yearsAgo} value={(thisYear - yearsAgo).toString()}>
@@ -104,35 +108,11 @@ const DiscoverForm = () => {
           as="select"
           name="maxRating"
           onChange={handleOptionChange}
-          value={options.maxRating}
+          value={filters.maxRating}
         >
           <option key={'Any'} value={'Any'}>
             {'Any'}
           </option>
-          {ratings.map((rating) => {
-            return (
-              <option key={rating} value={rating}>
-                {rating}
-              </option>
-            )
-          })}
-        </Form.Control>
-      </Form.Group>
-      <Form.Group className={`${classes['form_group']}`} controlId="select-min_rating">
-        <Form.Label>
-          Min Rating
-        </Form.Label>
-        <Form.Control
-          size="lg"
-          as="select"
-          name="minRating"
-          onChange={handleOptionChange}
-          value={options.minRating}
-        >
-          <option key={'Any'} value={'Any'}>
-            {'Any'}
-          </option>
-          {/* Add options for all the years from 1900 until now */}
           {ratings.map((rating) => {
             return (
               <option key={rating} value={rating}>

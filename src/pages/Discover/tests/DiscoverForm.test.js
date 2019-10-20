@@ -2,24 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Form from 'react-bootstrap/Form';
 import DiscoverForm from '../DiscoverForm';
+import { discoverMoviesRequest } from '../../../actions';
 
-const mockMovieList = [
-  { id: 'm1' },
-  { id: 'm2' },
-  { id: 'm3' },
-];
-
-const mockState = {
-  discover: {
-    error: false,
-    firstLoad: false,
-    isLoading: false,
-    movies: mockMovieList,
-  },
-};
-
+const mockDispatch = jest.fn()
 jest.mock('react-redux', () => ({
-  useDispatch: fn => fn(mockState),
+  useDispatch: () => mockDispatch,
 }));
 
 let wrapper;
@@ -34,9 +21,19 @@ afterEach(() => {
 
 it('correctly updates state for each option', () => {
   wrapper.find(Form.Control).forEach((input, index) => {
+    const initialFilters = {
+      genre: 'Any',
+      maxYear: 'Any',
+      minYear: 'Any',
+      maxRating: 'Any',
+      minRating: 'Any',
+    };
     const { name } = input.props();
     input.invoke('onChange')({ currentTarget: { name, value: 'new value' } });
     const newInput = wrapper.find(Form.Control).at(index);
     expect(newInput.props().value).toEqual('new value');
+    const expectedFilters = { ...initialFilters, [name]: 'new value' };
+    const expectedAction = discoverMoviesRequest(expectedFilters);
+    expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
   });
 });

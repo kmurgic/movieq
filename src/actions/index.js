@@ -1,26 +1,24 @@
 import {
-  FETCH_MOVIES_REQUEST, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_ERROR, QUERY_MOVIES_SUCCESS,
-  QUERY_MOVIES_ERROR, QUEUE_ADD, QUEUE_REMOVE, QUEUE_ITEM_ADD, QUEUE_ITEM_REORDER,
-  QUEUE_ITEM_REMOVE,
-  NOTIFICATION_ADD,
-  NOTIFICATION_REMOVE,
-  QUEUE_REORDER,
-  QUEUE_CHANGE,
+  DISCOVER_MOVIES_REQUEST, DISCOVER_MOVIES_SUCCESS, DISCOVER_MOVIES_ERROR,
+  QUERY_MOVIES_SUCCESS, QUERY_MOVIES_ERROR, QUEUE_ADD, QUEUE_REMOVE, QUEUE_ITEM_ADD,
+  QUEUE_ITEM_REORDER, QUEUE_ITEM_REMOVE, NOTIFICATION_ADD, NOTIFICATION_REMOVE,
+  QUEUE_REORDER, QUEUE_CHANGE,
 } from './types';
 import { QUERY_MOVIES_REQUEST } from './types';
 
 
-export const fetchMoviesRequest = () => ({
-  type: FETCH_MOVIES_REQUEST,
+export const discoverMoviesRequest = (filters) => ({
+  type: DISCOVER_MOVIES_REQUEST,
+  payload: filters,
 });
 
-export const fetchMoviesSuccess = (movies) => ({
-  type: FETCH_MOVIES_SUCCESS,
+export const discoverMoviesSuccess = (movies) => ({
+  type: DISCOVER_MOVIES_SUCCESS,
   payload: movies,
 });
 
-export const fetchMoviesError = (errorMessage) => ({
-  type: FETCH_MOVIES_ERROR,
+export const discoverMoviesError = (errorMessage) => ({
+  type: DISCOVER_MOVIES_ERROR,
   payload: errorMessage,
 });
 

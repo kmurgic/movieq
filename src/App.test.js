@@ -30,7 +30,7 @@ it('renders without crashing', () => {
   expect(wrapper);
 });
 
-it('dispatches fetchMoviesRequest', () => {
+it('dispatches discoverMoviesRequest', () => {
   expect(mockDispatch).toHaveBeenCalled();
 });
 

@@ -3,25 +3,25 @@ import {
 } from 'redux-saga/effects';
 import discoverMovies from '../endpoints/discoverMovies';
 import searchMovies from '../endpoints/searchMovies';
-import { queryMoviesSuccess, queryMoviesError, fetchMoviesError, fetchMoviesSuccess, notificationRemove } from '../actions';
-import { QUERY_MOVIES_REQUEST, FETCH_MOVIES_REQUEST, NOTIFICATION_ADD, QUEUE_ADD } from '../actions/types';
+import { queryMoviesSuccess, queryMoviesError, discoverMoviesError, discoverMoviesSuccess, notificationRemove } from '../actions';
+import { QUERY_MOVIES_REQUEST, DISCOVER_MOVIES_REQUEST, NOTIFICATION_ADD, QUEUE_ADD } from '../actions/types';
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time));
 
-function* fetchMovies(action) {
+function* discoverMoviesSaga(action) {
   try {
-    const movies = yield call(discoverMovies);
-    yield put(fetchMoviesSuccess(movies));
+    const movies = yield call(discoverMovies, action.payload);
+    yield put(discoverMoviesSuccess(movies));
   } catch (error) {
-    yield put(fetchMoviesError(error.message));
+    yield put(discoverMoviesError(error.message));
   }
 };
 
-function* watchFetchMovies() {
-  yield takeLatest(FETCH_MOVIES_REQUEST, fetchMovies);
+function* watchDiscoverMovies() {
+  yield takeLatest(DISCOVER_MOVIES_REQUEST, discoverMoviesSaga);
 };
 
-function* queryMovies(action) {
+function* queryMoviesSaga(action) {
   try {
     const movies = yield call(searchMovies, action.payload);
     yield put(queryMoviesSuccess(movies));
@@ -31,7 +31,7 @@ function* queryMovies(action) {
 };
 
 function* watchQueryMovies() {
-  yield takeLatest(QUERY_MOVIES_REQUEST, queryMovies);
+  yield takeLatest(QUERY_MOVIES_REQUEST, queryMoviesSaga);
 };
 
 function* removeNotificationAfterDelay(action) {
@@ -56,7 +56,7 @@ export function* watchAddQueue() {
 
 export default function* sagas() {
   yield all([
-    watchFetchMovies(),
+    watchDiscoverMovies(),
     watchQueryMovies(),
     watchAddNotification(),
     watchAddQueue(),
