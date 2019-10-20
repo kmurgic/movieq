@@ -6,7 +6,7 @@ import QueueItem from './QueueItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 const Queue = props => {
-  const { reorder, movies, name } = props;
+  const { getRemoveFromQueueFunction, reorder, movies, name } = props;
 
   const onDragEnd = (result) => {
     // dropped outside list
@@ -38,6 +38,7 @@ const Queue = props => {
                     id={id}
                     index={index}
                     posterSrc={posterSrc}
+                    removeFromQueue={getRemoveFromQueueFunction(id)}
                     title={title}
                   />
                 );
@@ -52,6 +53,7 @@ const Queue = props => {
 }
 
 Queue.propTypes = {
+  getRemoveFromQueueFunction: PropTypes.func.isRequired,
   name: PropTypes.string,
   reorder: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({

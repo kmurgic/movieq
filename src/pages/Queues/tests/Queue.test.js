@@ -26,6 +26,7 @@ beforeEach(() => {
       movies={mockMovieList}
       name="Test Queue"
       reorder={mockReorder}
+      getRemoveFromQueueFunction={() => () => { }}
     />
   );
 });

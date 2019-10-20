@@ -9,7 +9,11 @@ import classes from './index.module.css'
 import PropTypes from 'prop-types';
 
 const QueueItem = props => {
-  const { id, index, posterSrc, title } = props;
+  const { id, index, posterSrc, removeFromQueue, title } = props;
+
+  const handleRemoveClick = () => {
+    removeFromQueue();
+  }
 
   return (
     <Draggable key={id} draggableId={id} index={index}>
@@ -32,7 +36,12 @@ const QueueItem = props => {
             className={`${classes['movie-title']} mb-0 p-3 text-center text-black`}>
             {title}
           </h5>
-          <Button className={`${classes.remove} shadow-lg`} size='lg' variant="danger">
+          <Button
+            className={`${classes.remove} shadow-lg`}
+            onClick={handleRemoveClick}
+            size='lg'
+            variant="danger"
+          >
             <FontAwesomeIcon icon={faTrashAlt} />
           </Button>
         </ListGroup.Item>
@@ -45,6 +54,7 @@ QueueItem.propTypes = {
   id: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   posterSrc: PropTypes.string.isRequired,
+  removeFromQueue: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
 }
 
