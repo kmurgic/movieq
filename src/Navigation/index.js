@@ -51,13 +51,6 @@ const Navigation = () => {
           >
             My Queues
           </Nav.Link>
-          <Nav.Link
-            onClick={handleSelect}
-            as={NavLink}
-            to="profile"
-          >
-            My Profile
-          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
