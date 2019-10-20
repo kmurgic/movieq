@@ -5,7 +5,7 @@ const options = {
 
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
-async function fetchTopMovies() {
+async function discoverMovies() {
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
     + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false'
     + '&page=1';
@@ -22,4 +22,4 @@ async function fetchTopMovies() {
 }
 
 
-export default fetchTopMovies;
+export default discoverMovies;

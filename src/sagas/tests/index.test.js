@@ -3,7 +3,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
 import sagas from '..';
-import fetchTopMovies from '../../endpoints/fetchTopMovies';
+import discoverMovies from '../../endpoints/discoverMovies';
 import searchMovies from '../../endpoints/searchMovies';
 import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd, queueAdd } from '../../actions';
 
@@ -15,9 +15,9 @@ afterEach(() => {
 it('fetches movies', () => {
   const fakeMovies = ['movie1', 'movie2'];
 
-  return expectSaga(sagas, fetchTopMovies)
+  return expectSaga(sagas, discoverMovies)
     .provide([
-      [call(fetchTopMovies), fakeMovies],
+      [call(discoverMovies), fakeMovies],
     ])
     .put(fetchMoviesSuccess(fakeMovies))
     .dispatch(fetchMoviesRequest())
@@ -27,9 +27,9 @@ it('fetches movies', () => {
 it('handles fetch top movie errors', () => {
   const error = new Error('error');
 
-  return expectSaga(sagas, fetchTopMovies)
+  return expectSaga(sagas, discoverMovies)
     .provide([
-      [matchers.call.fn(fetchTopMovies), throwError(error)],
+      [matchers.call.fn(discoverMovies), throwError(error)],
     ])
     .put(fetchMoviesError(error.message))
     .dispatch(fetchMoviesRequest())

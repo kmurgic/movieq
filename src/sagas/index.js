@@ -1,7 +1,7 @@
 import {
   call, put, all, takeEvery, takeLatest,
 } from 'redux-saga/effects';
-import fetchTopMovies from '../endpoints/fetchTopMovies';
+import discoverMovies from '../endpoints/discoverMovies';
 import searchMovies from '../endpoints/searchMovies';
 import { queryMoviesSuccess, queryMoviesError, fetchMoviesError, fetchMoviesSuccess, notificationRemove } from '../actions';
 import { QUERY_MOVIES_REQUEST, FETCH_MOVIES_REQUEST, NOTIFICATION_ADD, QUEUE_ADD } from '../actions/types';
@@ -10,7 +10,7 @@ const delay = time => new Promise(resolve => setTimeout(resolve, time));
 
 function* fetchMovies(action) {
   try {
-    const movies = yield call(fetchTopMovies);
+    const movies = yield call(discoverMovies);
     yield put(fetchMoviesSuccess(movies));
   } catch (error) {
     yield put(fetchMoviesError(error.message));
