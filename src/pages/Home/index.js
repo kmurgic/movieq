@@ -1,8 +1,9 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <h1 className="text-center">Welcome to Movie Queue!</h1>
+    <Redirect to='/discover' />
   )
 }
 
