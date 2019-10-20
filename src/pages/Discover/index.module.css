@@ -1,0 +1,10 @@
+.form_group {
+  margin: 1em;
+}
+
+/* Bootstrap sm and xs screens */
+@media only screen and (max-width: 767px) {
+  .form_group {
+    min-width: calc(100% - 2em);
+  }
+}
