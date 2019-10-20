@@ -21,16 +21,22 @@ async function discoverMovies(filters = {}) {
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
     + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false'
     + `&page=1&certification_country=US${queryString}`;
+  let movies = [];
+  let totalResults = 60;
 
-  try {
-    const response = await fetch(url, options);
-    const json = await (response.json());
-    if (json.success === false) throw json.status_message;
-    const results = json.results;
-    return results;
-  } catch (error) {
-    throw new Error(error);
+  while (movies.length < totalResults) {
+    try {
+      const response = await fetch(url, options);
+      const json = await (response.json());
+      if (json.success === false) throw json.status_message;
+      if (json.total_results < 60) totalResults = json.total_results;
+      movies = [...movies, ...json.results];
+    } catch (error) {
+      throw new Error(error);
+    }
   }
+
+  return movies
 }
 
 

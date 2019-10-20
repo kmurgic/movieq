@@ -7,16 +7,25 @@ afterEach(() => {
 
 it('fetches top movies', async () => {
   jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve({
-    json: () => Promise.resolve({ results: ['movie1', 'movie2', 'movie3'] }),
+    json: () => Promise.resolve({ total_results: 3, results: ['movie1', 'movie2', 'movie3'] }),
   }));
   const movies = await discoverMovies();
   expect(movies.length).toEqual(3);
   global.fetch.mockRestore();
 });
 
+it('fetches the 60 top movies if there are more than 60 results', async () => {
+  jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve({
+    json: () => Promise.resolve({ total_results: 130, results: new Array(20).fill('movie') }),
+  }));
+  const movies = await discoverMovies();
+  expect(movies.length).toEqual(60);
+  global.fetch.mockRestore();
+});
+
 it('generates the correct url from filters', async () => {
   const mockFetch = jest.fn().mockReturnValue(Promise.resolve({
-    json: () => Promise.resolve({ results: ['movie1', 'movie2', 'movie3'] }),
+    json: () => Promise.resolve({ total_results: 3, results: ['movie1', 'movie2', 'movie3'] }),
   }));
   jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
   const filters = {
@@ -42,7 +51,7 @@ it('generates the correct url from filters', async () => {
 
 it('correctly handles filters with the "Any" value', async () => {
   const mockFetch = jest.fn().mockReturnValue(Promise.resolve({
-    json: () => Promise.resolve({ results: ['movie1', 'movie2', 'movie3'] }),
+    json: () => Promise.resolve({ total_results: 3, results: ['movie1', 'movie2', 'movie3'] }),
   }));
   jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
   const filters = {
@@ -68,7 +77,7 @@ it('correctly handles filters with the "Any" value', async () => {
 
 it('fetches top rated movies when no filters are applied', async () => {
   const mockFetch = jest.fn().mockReturnValue(Promise.resolve({
-    json: () => Promise.resolve({ results: ['movie1', 'movie2', 'movie3'] }),
+    json: () => Promise.resolve({ total_results: 3, results: ['movie1', 'movie2', 'movie3'] }),
   }));
   jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
   const expectedString = 'https://api.themoviedb.org/3/discover/movie?'

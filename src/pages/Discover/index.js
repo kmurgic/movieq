@@ -6,7 +6,7 @@ import DiscoverForm from './DiscoverForm';
 
 const Discover = () => {
   const { error, firstLoad, isLoading, movies } = useSelector(state => state.discover, shallowEqual);
-
+  console.log(movies);
   return (
     <>
       <DiscoverForm />
