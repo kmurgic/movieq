@@ -24,8 +24,9 @@ const mockMovieList = [{
   title: 'Title 3',
 }];
 
-const mockReorder = jest.fn();
 const mockChangeQueue = jest.fn();
+const mockRemove = jest.fn();
+const mockReorder = jest.fn();
 let wrapper;
 
 beforeEach(() => {
@@ -33,10 +34,11 @@ beforeEach(() => {
   wrapper = mount(
     <Queue
       changeQueue={mockChangeQueue}
+      getRemoveFromQueueFunction={() => () => { }}
       movies={mockMovieList}
       name="Test Queue"
+      remove={mockRemove}
       reorder={mockReorder}
-      getRemoveFromQueueFunction={() => () => { }}
     />
   );
 });
@@ -64,15 +66,28 @@ it('does not reorder on drag end outside droppable', () => {
   expect(mockReorder).not.toHaveBeenCalled();
 });
 
+it('renders without a remove button when not passed a remove function', () => {
+  wrapper.setProps({ remove: null })
+  const firstButton = wrapper.find(Button).at(0);
+  expect(firstButton.props().variant).not.toEqual('danger');
+});
+
+it('triggers the remove funciton on remove button press', () => {
+  const removeButton = wrapper.find(Button).at(0);
+  removeButton.invoke('onClick')();
+  expect(mockRemove).toHaveBeenCalled();
+
+});
+
 it('renders a form instead of an h2 when edit button is clicked', () => {
-  const editButton = wrapper.find(Button).at(0);
+  const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   expect(wrapper.find(Form).length).toEqual(1);
   expect(wrapper.find('h2').length).toEqual(0);
 });
 
 it('changes the value of the input properly', () => {
-  const editButton = wrapper.find(Button).at(0);
+  const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
   nameChange.invoke('onChange')({ target: { value: 'new value' } });
@@ -81,7 +96,7 @@ it('changes the value of the input properly', () => {
 });
 
 it('closes the form and changes the name on form submission', () => {
-  const editButton = wrapper.find(Button).at(0);
+  const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
   nameChange.invoke('onChange')({ target: { value: 'new name' } });
@@ -98,7 +113,7 @@ it('closes the form and changes the name on form submission', () => {
 
 
 it('does not close the form or change the name form submission with no name', () => {
-  const editButton = wrapper.find(Button).at(0);
+  const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
   nameChange.invoke('onChange')({ target: { value: '' } });

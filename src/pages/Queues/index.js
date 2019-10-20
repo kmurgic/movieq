@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { queueItemReorder, queueItemRemove, queueChange, queueAdd } from '../../actions';
+import { queueItemReorder, queueItemRemove, queueChange, queueAdd, queueRemove } from '../../actions';
 import Queue from './Queue';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +26,11 @@ const Queues = () => {
     dispatch(queueChange(queueId, changes));
   };
 
+  const getRemoveFunction = (queueId) => {
+    if (queueList.length === 1) return null;
+    return () => dispatch(queueRemove(queueId));
+  }
+
   const handleAddNew = () => {
     dispatch(queueAdd('New Watchlist'));
   };
@@ -49,6 +54,7 @@ const Queues = () => {
             changeQueue={getChangeQueueFunction(queue.id)}
             movies={queue.movies}
             name={queue.name}
+            remove={getRemoveFunction(queue.id)}
             reorder={getReorderFunction(queue.id)}
             getRemoveFromQueueFunction={getRemoveFromQueueFunction(queue.id)}
           />

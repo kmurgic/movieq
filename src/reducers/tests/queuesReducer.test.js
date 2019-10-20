@@ -6,7 +6,7 @@ const initialState = {
   queueList: [
     {
       id: 1,
-      name: 'My Queue',
+      name: 'Watchlist',
       movies: [],
     },
   ],
@@ -49,17 +49,17 @@ it('should rename a queue', () => {
     queueList: [
       {
         id: 1,
-        name: 'My Queue',
+        name: 'Watchlist',
         movies: [],
       },
       {
         id: 2,
-        name: 'My Queue',
+        name: 'Watchlist',
         movies: [],
       },
       {
         id: 3,
-        name: 'My Queue',
+        name: 'Watchlist',
         movies: [],
       },
     ],
@@ -100,7 +100,7 @@ const stateWithMovies = {
       { id: 'm4' },
       { id: 'm5' },
     ],
-    name: 'My Queue',
+    name: 'Watchlist',
   }]
 };
 

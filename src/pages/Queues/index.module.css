@@ -3,6 +3,15 @@
   min-width: 20em;
   border-radius: 1.5em;
   border: 2px solid black;
+  position: relative;
+}
+
+.queue .remove_queue {
+  position: absolute !important;
+  top: 1em;
+  left: 0.75em;
+  border-radius: 0.5em;
+  z-index: 2;
 }
 
 /* bootstrap xs */
@@ -43,7 +52,7 @@ body .queue-item {
   opacity: 0.6;
 }
 
-body .remove {
+body .remove_item {
   display: none;
   position: absolute !important;
   top: 0.25em;

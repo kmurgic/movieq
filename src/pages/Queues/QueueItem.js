@@ -37,7 +37,7 @@ const QueueItem = props => {
             {title}
           </h5>
           <Button
-            className={`${classes.remove} shadow-lg`}
+            className={`${classes['remove_item']} shadow-lg`}
             onClick={handleRemoveClick}
             size='lg'
             variant="danger"

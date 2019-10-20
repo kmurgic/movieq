@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,7 +15,7 @@ import classes from './index.module.css';
 
 const Queue = props => {
   const {
-    changeQueue, getRemoveFromQueueFunction, reorder, movies, name,
+    changeQueue, getRemoveFromQueueFunction, remove, reorder, movies, name,
   } = props;
   const [editMode, setEditMode] = useState(false);
   const [editName, setEditName] = useState(name);
@@ -55,6 +55,15 @@ const Queue = props => {
 
   return (
     <div className={`${classes.queue} text-center bg-light px-5 pt-4 pb-3 m-sm-4 d-inline-block`}>
+      {remove && (
+        <Button
+          className={`${classes['remove_queue']} shadow-lg`}
+          onClick={remove}
+          variant="danger"
+        >
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </Button>
+      )}
       {editMode
         ? (
           <Form
@@ -144,7 +153,8 @@ const Queue = props => {
 Queue.propTypes = {
   changeQueue: PropTypes.func.isRequired,
   getRemoveFromQueueFunction: PropTypes.func.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  remove: PropTypes.func,
   reorder: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,

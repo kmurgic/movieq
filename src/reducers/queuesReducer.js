@@ -3,7 +3,7 @@ const initialState = {
   queueList: [
     {
       id: 1,
-      name: 'My Queue',
+      name: 'Watchlist',
       movies: [],
     },
   ],
