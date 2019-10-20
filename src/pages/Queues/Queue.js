@@ -7,6 +7,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
+import InputGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 import QueueItem from './QueueItem';
 import classes from './index.module.css';
@@ -58,27 +59,32 @@ const Queue = props => {
         ? (
           <Form
             className={`${classes.form} d-inline-block ml-auto mr-auto mb-3`}
+            noValidate
             onSubmit={handleSubmit}
             validated={hasValidated}
           >
-            <Form.Group className="d-inline" controlId="queue-name_input">
-              <Form.Control
-                className={`${classes['name_input']} w-75 d-inline`}
-                onChange={handleNameChange}
-                required
-                value={editName}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please enter a name for this queue.
+            <InputGroup className="d-flex flex-row align-items-start flex-nowrap">
+              <Form.Group controlId="queue-name_input pr-0">
+                <Form.Control
+                  className={`${classes['name_input']} w-75 d-inline`}
+                  maxLength={25}
+                  onChange={handleNameChange}
+                  required
+                  type="text"
+                  value={editName}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please enter a name for this queue.
               </Form.Control.Feedback>
-            </Form.Group>
-            <Button
-              className="ml-2"
-              type="submit"
-              variant="outline-primary"
-            >
-              <FontAwesomeIcon icon={faSave} />
-            </Button>
+              </Form.Group>
+              <Button
+                className={classes.save}
+                type="submit"
+                variant="outline-primary"
+              >
+                <FontAwesomeIcon icon={faSave} />
+              </Button>
+            </InputGroup>
           </Form>
         )
         : (
