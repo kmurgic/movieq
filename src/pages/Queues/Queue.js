@@ -1,12 +1,27 @@
-import React from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import classes from './index.module.css'
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import QueueItem from './QueueItem';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
+import QueueItem from './QueueItem';
+import classes from './index.module.css';
+
 
 const Queue = props => {
-  const { getRemoveFromQueueFunction, reorder, movies, name } = props;
+  const {
+    changeQueue, getRemoveFromQueueFunction, reorder, movies, name,
+  } = props;
+  const [editMode, setEditMode] = useState(false);
+  const [editName, setEditName] = useState(name);
+
+  const toggleEditMode = () => {
+    setEditMode(previousEditMode => !previousEditMode);
+  }
 
   const onDragEnd = (result) => {
     // dropped outside list
@@ -19,10 +34,51 @@ const Queue = props => {
     );
   };
 
+  const handleNameChange = (e) => {
+    setEditName(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEditMode(false);
+    changeQueue({ name: editName });
+  }
+
   return (
-    <div className={`${classes.queue} bg-light px-5 pt-4 pb-3 m-sm-4 d-inline-block`}>
-      <h2 className="text-center mb-4">{name}</h2>
-      <DragDropContext onDragEnd={onDragEnd}>
+    <div className={`${classes.queue} text-center bg-light px-5 pt-4 pb-3 m-sm-4 d-inline-block`}>
+      {editMode
+        ? (
+          <Form
+            className={`${classes.form} d-inline-block ml-auto mr-auto mb-3`}
+            onSubmit={handleSubmit}>
+            <FormControl
+              className={`${classes['name_input']} w-75 d-inline`}
+              onChange={handleNameChange}
+              value={editName}
+            />
+            <Button
+              className="ml-4"
+              type="submit"
+              variant="outline-primary"
+            >
+              <FontAwesomeIcon icon={faSave} />
+            </Button>
+          </Form>
+        )
+        : (
+          <h2 className="text-center mb-4">
+            {name}
+            <Button
+              className="ml-4"
+              onClick={toggleEditMode}
+              variant="outline-primary"
+            >
+              <FontAwesomeIcon icon={faPencilAlt} />
+            </Button>
+          </h2>
+        )
+      }
+      < DragDropContext onDragEnd={onDragEnd}>
         <Droppable direction="horizontal" droppableId="droppable">
           {(provided) => (
             <ListGroup
@@ -48,11 +104,12 @@ const Queue = props => {
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    </div >
   )
 }
 
 Queue.propTypes = {
+  changeQueue: PropTypes.func.isRequired,
   getRemoveFromQueueFunction: PropTypes.func.isRequired,
   name: PropTypes.string,
   reorder: PropTypes.func.isRequired,

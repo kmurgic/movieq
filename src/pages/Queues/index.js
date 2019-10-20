@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { queueItemReorder, queueItemRemove } from '../../actions';
+import { queueItemReorder, queueItemRemove, queueChange } from '../../actions';
 import Queue from './Queue';
 
 const Queues = () => {
@@ -19,6 +19,10 @@ const Queues = () => {
     dispatch(queueItemRemove(queueId, movieId));
   }
 
+  const getChangeQueueFunction = (queueId) => (changes) => {
+    dispatch(queueChange(queueId, changes));
+  }
+
   return (
     <>
       <h1 className='mb-5'>My Queues</h1>
@@ -26,6 +30,7 @@ const Queues = () => {
         {queueList.map(queue => (
           <Queue
             key={queue.id}
+            changeQueue={getChangeQueueFunction(queue.id)}
             movies={queue.movies}
             name={queue.name}
             reorder={getReorderFunction(queue.id)}

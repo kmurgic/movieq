@@ -4,6 +4,8 @@ import {
   QUEUE_ITEM_REMOVE,
   NOTIFICATION_ADD,
   NOTIFICATION_REMOVE,
+  QUEUE_REORDER,
+  QUEUE_CHANGE,
 } from './types';
 import { QUERY_MOVIES_REQUEST } from './types';
 
@@ -48,6 +50,22 @@ export const queueRemove = (queueId) => ({
   type: QUEUE_REMOVE,
   payload: {
     queueId,
+  },
+});
+
+export const queueReorder = (startPos, endPos) => ({
+  type: QUEUE_REORDER,
+  payload: {
+    startPos,
+    endPos,
+  },
+});
+
+export const queueChange = (queueId, changes) => ({
+  type: QUEUE_CHANGE,
+  payload: {
+    queueId,
+    changes,
   },
 });
 
