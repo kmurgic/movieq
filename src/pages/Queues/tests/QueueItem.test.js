@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import QueueItem from '../Queue';
+import QueueItem from '../QueueItem';
 
 let wrapper;
 beforeEach(() => {
