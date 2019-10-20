@@ -14,8 +14,8 @@ const mockState = {
     firstLoad: false,
     isLoading: false,
     movies: mockMovieList,
-  }
-}
+  },
+};
 
 jest.mock('react-redux', () => ({
   useSelector: fn => fn(mockState),
