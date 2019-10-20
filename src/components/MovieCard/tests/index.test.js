@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MovieCard from '../index';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { notificationAdd } from '../../../actions';
 const mockMovieList = [
   { id: 1 },
   { id: 2 },
@@ -14,6 +15,7 @@ const mockState = {
     queueList: [{
       id: 1,
       movies: mockMovieList,
+      name: 'Watchlist',
     }],
   },
   notifications: {
@@ -73,15 +75,16 @@ it('should render with a fallback image if not passed a poster_path', () => {
   expect(cardImageSrc).toEqual(fallbackImage);
 });
 
-it('should dispatch notification add action when movie is already in list', () => {
-  const addToQueue = wrapper.find(Button);
-  addToQueue.invoke('onClick')();
-  expect(mockDispatch).toHaveBeenCalledTimes(1);
+it('should dispatch the proper notification when movie is already in list', () => {
+  const addToFirstQueue = wrapper.find(Dropdown.Item).at(0);
+  addToFirstQueue.invoke('onClick')();
+  const expectedAction = notificationAdd('Oops!', 'Movie Title is already in Watchlist', 'secondary', 2);
+  expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
 });
 
-it('should dispatch add queue item and notification add actions for a new movie', () => {
+it('should dispatch add queue item and add notification actions for a new movie', () => {
   wrapper.setProps({ movieId: 53 });
-  const addToQueue = wrapper.find(Button);
-  addToQueue.invoke('onClick')();
+  const addToFirstQueue = wrapper.find(Dropdown.Item).at(0);
+  addToFirstQueue.invoke('onClick')();
   expect(mockDispatch).toHaveBeenCalledTimes(2);
 });

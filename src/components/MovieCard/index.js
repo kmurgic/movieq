@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
 import classes from './index.module.css'
 import { queueItemAdd, notificationAdd } from '../../actions/';
 
@@ -23,18 +23,18 @@ const MovieCard = props => {
   const cardTitleText = `${title}${releaseYear ? ` (${releaseYear})` : ''}`;
 
   const movie = { id: movieId, posterSrc, title };
-  const handleAddToQueueClick = () => {
-    const { movies, name: queueName } = queueList[0];
+  const handleAddToQueueClick = (queueIndex) => {
+    const { id: queueId, movies, name: queueName } = queueList[queueIndex];
 
     // Avoid adding a movie to a list twice!
     if (movies.find(movie => movie.id === movieId)) {
       const duplicateMessage = `${title} is already in ${queueName}`;
-      dispatch(notificationAdd('Oops', duplicateMessage, 'secondary', nextId));
+      dispatch(notificationAdd('Oops!', duplicateMessage, 'secondary', nextId));
       return;
     }
     const successMessage = `${title} Added To ${queueName}`;
     dispatch(notificationAdd('Success', successMessage, 'success', nextId));
-    dispatch(queueItemAdd(1, movie));
+    dispatch(queueItemAdd(queueId, movie));
   };
 
   return (
@@ -52,13 +52,26 @@ const MovieCard = props => {
               {clippedOverview}
             </Card.Text>
           </div>
-          <Button
-            className='mt-4 align-self-start ml-2'
-            onClick={handleAddToQueueClick}
-            variant="outline-secondary"
-          >
-            Add to Queue
-          </Button>
+          <Dropdown>
+            <Dropdown.Toggle
+              className='mt-4 align-self-start ml-2'
+              variant="outline-secondary"
+            >
+              Add to Queue
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {
+                queueList.map((queue, index) => (
+                  <Dropdown.Item
+                    key={queue.id}
+                    onClick={() => handleAddToQueueClick(index)}
+                  >
+                    {queue.name}
+                  </Dropdown.Item>
+                ))
+              }
+            </Dropdown.Menu>
+          </Dropdown>
         </Card.Body>
       </Row>
     </Card>
