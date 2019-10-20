@@ -60,7 +60,7 @@ const Queue = props => {
             onSubmit={handleSubmit}
             validated={hasValidated}
           >
-            <Form.Group className="d-inline">
+            <Form.Group className="d-inline" controlId="queue-name_input">
               <Form.Control
                 className={`${classes['name_input']} w-75 d-inline`}
                 onChange={handleNameChange}
