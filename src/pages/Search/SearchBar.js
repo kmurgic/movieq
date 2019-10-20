@@ -28,7 +28,7 @@ const SearchBar = props => {
           type="text"
           placeholder="Search for Movies..."
           className={`${classes['search-input']} w-50 mr-0`}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setQuery(e.currentTarget.value)}
           value={query}
         />
         <InputGroup.Append>

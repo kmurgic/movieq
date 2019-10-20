@@ -20,7 +20,7 @@ it('should search on form submission', () => {
 
 it('should update the query form on change to search input', () => {
   const searchInput = wrapper.find(FormControl);
-  searchInput.invoke('onChange')({ target: { value: 'new query' } });
+  searchInput.invoke('onChange')({ currentTarget: { value: 'new query' } });
   const newSearchInput = wrapper.find(FormControl);
   expect(newSearchInput.props().value).toEqual('new query');
 });

@@ -90,7 +90,7 @@ it('changes the value of the input properly', () => {
   const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
-  nameChange.invoke('onChange')({ target: { value: 'new value' } });
+  nameChange.invoke('onChange')({ currentTarget: { value: 'new value' } });
   const newNameChange = wrapper.find(FormControl);
   expect(newNameChange.props().value).toEqual('new value');
 });
@@ -99,7 +99,7 @@ it('closes the form and changes the name on form submission', () => {
   const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
-  nameChange.invoke('onChange')({ target: { value: 'new name' } });
+  nameChange.invoke('onChange')({ currentTarget: { value: 'new name' } });
   const form = wrapper.find(Form);
   form.invoke('onSubmit')({
     preventDefault: () => { },
@@ -116,7 +116,7 @@ it('does not close the form or change the name form submission with no name', ()
   const editButton = wrapper.find(Button).at(1);
   editButton.invoke('onClick')();
   const nameChange = wrapper.find(FormControl);
-  nameChange.invoke('onChange')({ target: { value: '' } });
+  nameChange.invoke('onChange')({ currentTarget: { value: '' } });
   const form = wrapper.find(Form);
   form.invoke('onSubmit')({
     preventDefault: () => { },

@@ -37,7 +37,7 @@ const Queue = props => {
   };
 
   const handleNameChange = (e) => {
-    setEditName(e.target.value);
+    setEditName(e.currentTarget.value);
   }
 
   const handleSubmit = (e) => {
