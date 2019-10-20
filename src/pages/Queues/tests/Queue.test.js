@@ -5,6 +5,7 @@ import Queue from '../Queue';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
+import { Link, StaticRouter as Router } from 'react-router-dom';
 
 /* Not wrapping state changes in act despit console warnings - enzyme automatically wraps */
 /* See enzyme github page https://github.com/airbnb/enzyme#reacttestutilsact-wrap */
@@ -111,5 +112,24 @@ it('does not close the form or change the name form submission with no name', ()
   expect(wrapper.find('h2').length).toEqual(0);
   const newForm = wrapper.find(Form);
   expect(newForm.props().validated).toEqual(true);
+});
+
+// Link can't be used outside of a router so we have to mock it
+
+
+it('should provide links to discover and search if there are no movies in queue', () => {
+  wrapper = mount(
+    <Router>
+      <Queue
+        changeQueue={mockChangeQueue}
+        movies={[]}
+        name="Test Queue"
+        reorder={mockReorder}
+        getRemoveFromQueueFunction={() => () => { }}
+      />
+    </Router>
+  )
+  const links = wrapper.find(Link);
+  expect(links.length).toEqual(2);
 });
 

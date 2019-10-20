@@ -7,6 +7,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
 import QueueItem from './QueueItem';
 import classes from './index.module.css';
 
@@ -93,32 +94,43 @@ const Queue = props => {
           </h2>
         )
       }
-      < DragDropContext onDragEnd={onDragEnd}>
-        <Droppable direction="horizontal" droppableId="droppable">
-          {(provided) => (
-            <ListGroup
-              className="d-flex-inline flex-row justify-content-start flex-nowrap overflow-auto"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {movies.map((movie, index) => {
-                const { id, posterSrc, title } = movie;
-                return (
-                  <QueueItem
-                    key={id}
-                    id={id}
-                    index={index}
-                    posterSrc={posterSrc}
-                    removeFromQueue={getRemoveFromQueueFunction(id)}
-                    title={title}
-                  />
-                );
-              })}
-              {provided.placeholder}
-            </ListGroup>
-          )}
-        </Droppable>
-      </DragDropContext>
+      {movies.length
+        ? (
+          < DragDropContext onDragEnd={onDragEnd}>
+            <Droppable direction="horizontal" droppableId="droppable">
+              {(provided) => (
+                <ListGroup
+                  className="d-flex-inline flex-row justify-content-start flex-nowrap overflow-auto"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {movies.map((movie, index) => {
+                    const { id, posterSrc, title } = movie;
+                    return (
+                      <QueueItem
+                        key={id}
+                        id={id}
+                        index={index}
+                        posterSrc={posterSrc}
+                        removeFromQueue={getRemoveFromQueueFunction(id)}
+                        title={title}
+                      />
+                    );
+                  })}
+                  {provided.placeholder}
+                </ListGroup>
+              )}
+            </Droppable>
+          </DragDropContext>
+        )
+        : (
+          <>
+            <p>You don't have any movies in this queue.</p>
+            <p><Link className="text-secondary" to="/disocver">Discover new movies</Link></p>
+            <p><Link className="text-secondary" to="/search">Search for movies</Link></p>
+          </>
+        )
+      }
     </div >
   )
 }
