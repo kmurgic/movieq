@@ -18,9 +18,22 @@ body .queue-item {
   border: none;
 }
 
+.image_overlay {
+  background: black;
+}
+
+.image:hover {
+  opacity: 0.6;
+}
+
 body .remove {
+  display: none;
   position: absolute !important;
   top: 0.25em;
   right: 0.25em;
   border-radius: 50%;
+}
+
+.queue-item:hover .remove {
+  display: inline-block;
 }

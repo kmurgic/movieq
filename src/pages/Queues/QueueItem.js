@@ -22,12 +22,14 @@ const QueueItem = props => {
           action
           className={`${classes['queue-item']} mx-1 mb-3 p-0 bg-transparent`}
         >
-          <Image
-            className="m-0 w-100"
-            src={posterSrc}
-          />
+          <div className={classes['image_overlay']}>
+            <Image
+              className={`${classes.image} m-0 w-100`}
+              src={posterSrc}
+            />
+          </div>
           <h5
-            className={`${classes['movie-title']} text-dark mb-0 p-3 text-center text-black`}>
+            className={`${classes['movie-title']} mb-0 p-3 text-center text-black`}>
             {title}
           </h5>
           <Button className={`${classes.remove} shadow-lg`} size='lg' variant="danger">
