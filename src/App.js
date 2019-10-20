@@ -7,14 +7,13 @@ import {
 import { useDispatch } from 'react-redux';
 import { fetchMoviesRequest } from './actions';
 import Navigation from './Navigation';
-import Queues from './pages/Queues';
+import NotificationContainer from './components/NotificationContainer';
 import Discover from './pages/Discover';
+import Search from './pages/Search';
+import Queues from './pages/Queues';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
 import './custom.scss';
 import './App.css';
-import Search from './pages/Search';
-import NotificationContainer from './components/NotificationContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,9 +36,6 @@ function App() {
           </Route>
           <Route path="/queues">
             <Queues />
-          </Route>
-          <Route path="/profile">
-            <Profile />
           </Route>
           <Route path="/">
             <Home />
