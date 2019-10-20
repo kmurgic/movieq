@@ -6,7 +6,6 @@ import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import ListGroup from 'react-bootstrap/ListGroup';
 import QueueItem from './QueueItem';
 import classes from './index.module.css';
@@ -18,6 +17,7 @@ const Queue = props => {
   } = props;
   const [editMode, setEditMode] = useState(false);
   const [editName, setEditName] = useState(name);
+  const [hasValidated, setHasValidated] = useState(false)
 
   const toggleEditMode = () => {
     setEditMode(previousEditMode => !previousEditMode);
@@ -40,6 +40,13 @@ const Queue = props => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    const form = e.currentTarget;
+    setHasValidated(true);
+    if (form.checkValidity() === false) {
+      return;
+    }
+    setHasValidated(false);
     setEditMode(false);
     changeQueue({ name: editName });
   }
@@ -50,14 +57,22 @@ const Queue = props => {
         ? (
           <Form
             className={`${classes.form} d-inline-block ml-auto mr-auto mb-3`}
-            onSubmit={handleSubmit}>
-            <FormControl
-              className={`${classes['name_input']} w-75 d-inline`}
-              onChange={handleNameChange}
-              value={editName}
-            />
+            onSubmit={handleSubmit}
+            validated={hasValidated}
+          >
+            <Form.Group className="d-inline">
+              <Form.Control
+                className={`${classes['name_input']} w-75 d-inline`}
+                onChange={handleNameChange}
+                required
+                value={editName}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter a name for this queue.
+              </Form.Control.Feedback>
+            </Form.Group>
             <Button
-              className="ml-4"
+              className="ml-2"
               type="submit"
               variant="outline-primary"
             >

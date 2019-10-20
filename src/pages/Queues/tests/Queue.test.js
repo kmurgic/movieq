@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
-/* Not wrapping state changes in act - enzyme automatically wraps */
+/* Not wrapping state changes in act despit console warnings - enzyme automatically wraps */
 /* See enzyme github page https://github.com/airbnb/enzyme#reacttestutilsact-wrap */
 
 const mockMovieList = [{
@@ -85,9 +85,31 @@ it('closes the form and changes the name on form submission', () => {
   const nameChange = wrapper.find(FormControl);
   nameChange.invoke('onChange')({ target: { value: 'new name' } });
   const form = wrapper.find(Form);
-  form.invoke('onSubmit')({ preventDefault: () => { } });
+  form.invoke('onSubmit')({
+    preventDefault: () => { },
+    stopPropagation: () => { },
+    currentTarget: form.getDOMNode(),
+  });
   expect(wrapper.find(Form).length).toEqual(0);
   expect(wrapper.find('h2').length).toEqual(1);
   expect(mockChangeQueue).toHaveBeenCalledWith({ name: 'new name' });
+});
+
+
+it('does not close the form or change the name form submission with no name', () => {
+  const editButton = wrapper.find(Button).at(0);
+  editButton.invoke('onClick')();
+  const nameChange = wrapper.find(FormControl);
+  nameChange.invoke('onChange')({ target: { value: '' } });
+  const form = wrapper.find(Form);
+  form.invoke('onSubmit')({
+    preventDefault: () => { },
+    stopPropagation: () => { },
+    currentTarget: form.getDOMNode(),
+  });
+  expect(wrapper.find(Form).length).toEqual(1);
+  expect(wrapper.find('h2').length).toEqual(0);
+  const newForm = wrapper.find(Form);
+  expect(newForm.props().validated).toEqual(true);
 });
 

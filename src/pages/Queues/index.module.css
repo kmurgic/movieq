@@ -1,13 +1,6 @@
-.form {
-  white-space: nowrap;
-}
-
-body .name_input {
-  font-size: 1.5em;
-}
-
 .queue {
   width: 90%;
+  min-width: 20em;
   border-radius: 1.5em;
   border: 2px solid black;
 }
@@ -17,6 +10,14 @@ body .name_input {
   .queue {
     width: 100vw;
   }
+}
+
+.form {
+  white-space: nowrap;
+}
+
+body .name_input {
+  font-size: 1.5em;
 }
 
 body .queue-item {
