@@ -53,7 +53,6 @@ const changeQueue = (state, action) => {
   const queueToChange = queueListCopy[queueIndex];
   const newQueue = { ...queueToChange, ...changes };
   queueListCopy.splice(queueIndex, 1, newQueue);
-  console.log(queueListCopy)
   return { ...state, queueList: queueListCopy };
 };
 
