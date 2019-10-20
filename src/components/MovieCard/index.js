@@ -22,7 +22,7 @@ const MovieCard = props => {
   const posterSrc = posterPath ? `${imageBasePath}${posterPath}` : fallbackImage;
   const cardTitleText = `${title}${releaseYear ? ` (${releaseYear})` : ''}`;
 
-  const movie = { id: movieId, posterSrc, title: cardTitleText };
+  const movie = { id: movieId, posterSrc, title };
   const handleAddToQueueClick = () => {
     const { movies, name: queueName } = queueList[0];
 

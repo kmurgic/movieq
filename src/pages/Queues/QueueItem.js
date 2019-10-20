@@ -9,7 +9,7 @@ import classes from './index.module.css'
 import PropTypes from 'prop-types';
 
 const QueueItem = props => {
-  const { id, index, posterSrc, title, variant } = props;
+  const { id, index, posterSrc, title } = props;
 
   return (
     <Draggable key={id} draggableId={id} index={index}>
@@ -20,16 +20,17 @@ const QueueItem = props => {
           {...provided.dragHandleProps}
           as="div"
           action
-          className={`${classes['queue-item']} d-flex justify-content-between`
-            + ' align-items-center pl-sm-0 pt-sm-0 pb-sm-0'}
-          variant={variant}>
+          className={`${classes['queue-item']} mx-1 mb-3 p-0 bg-transparent`}
+        >
           <Image
-            className={`${classes.thumbnail} mr-4`}
+            className="m-0 w-100"
             src={posterSrc}
-            thumbnail
           />
-          <span className={classes['movie-title']}>{title}</span>
-          <Button size='lg' variant="outline-danger">
+          <h5
+            className={`${classes['movie-title']} text-dark mb-0 p-3 text-center text-black`}>
+            {title}
+          </h5>
+          <Button className={`${classes.remove} shadow-lg`} size='lg' variant="danger">
             <FontAwesomeIcon icon={faTrashAlt} />
           </Button>
         </ListGroup.Item>
@@ -43,7 +44,6 @@ QueueItem.propTypes = {
   index: PropTypes.number.isRequired,
   posterSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['info', 'light']).isRequired,
 }
 
 export default QueueItem;

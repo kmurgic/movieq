@@ -1,9 +1,9 @@
 import React from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import ListGroup from 'react-bootstrap/ListGroup';
 import classes from './index.module.css'
 import PropTypes from 'prop-types';
 import QueueItem from './QueueItem';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const Queue = props => {
   const { reorder, movies, name } = props;
@@ -20,19 +20,18 @@ const Queue = props => {
   };
 
   return (
-    <div className={`${classes.queue} m-sm-4 d-inline-block`}>
-      <h2 className="text-center mb-3">{name}</h2>
+    <div className={`${classes.queue} bg-light px-5 pt-4 pb-3 m-sm-4 d-inline-block`}>
+      <h2 className="text-center mb-4">{name}</h2>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable">
+        <Droppable direction="horizontal" droppableId="droppable">
           {(provided) => (
             <ListGroup
-              className="w-100"
+              className="d-flex-inline flex-row justify-content-start flex-nowrap overflow-auto"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {movies.map((movie, index) => {
                 const { id, posterSrc, title } = movie;
-                const variant = index % 2 ? 'info' : 'light';
                 return (
                   <QueueItem
                     key={id}
@@ -40,7 +39,6 @@ const Queue = props => {
                     index={index}
                     posterSrc={posterSrc}
                     title={title}
-                    variant={variant}
                   />
                 );
               })}

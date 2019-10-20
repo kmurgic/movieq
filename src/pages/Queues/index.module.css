@@ -1,36 +1,26 @@
 .queue {
-  min-width: 18em;
-  max-width: 40em;
-  width: 50%;
+  width: 90%;
+  border-radius: 1.5em;
+  border: 2px solid black;
+}
+
+/* bootstrap xs */
+@media only screen and (max-width: 575px) {
+  .queue {
+    width: 100vw;
+  }
 }
 
 body .queue-item {
-  color: #333;
+  min-width: 12em;
+  max-width: 12em;
+  box-sizing: border-box;
+  border: none;
 }
 
-body .thumbnail {
-  height: 6em;
-}
-
-.movie-title {
-  font-size: 1.4em;
-  font-weight: bold;
-}
-
-/* Bootstrap xs and sm */
-@media only screen and (max-width: 767px) {
-  .queue {
-    width: 80%;
-  }
-}
-
-/* Bootstrap xs */
-@media only screen and (max-width: 575px) {
-  .queue {
-    margin: 1em;
-  }
-
-  body .thumbnail {
-    display: none;
-  }
+body .remove {
+  position: absolute !important;
+  top: 0.25em;
+  right: 0.25em;
+  border-radius: 50%;
 }
