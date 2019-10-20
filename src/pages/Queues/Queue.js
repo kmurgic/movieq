@@ -87,7 +87,7 @@ const Queue = props => {
             <Button
               className="ml-4"
               onClick={toggleEditMode}
-              variant="outline-primary"
+              variant="outline-success"
             >
               <FontAwesomeIcon icon={faPencilAlt} />
             </Button>

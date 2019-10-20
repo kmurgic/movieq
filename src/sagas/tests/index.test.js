@@ -5,7 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import sagas from '..';
 import fetchTopMovies from '../../endpoints/fetchTopMovies';
 import searchMovies from '../../endpoints/searchMovies';
-import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd } from '../../actions';
+import { fetchMoviesSuccess, fetchMoviesRequest, fetchMoviesError, queryMoviesSuccess, queryMoviesRequest, queryMoviesError, notificationRemove, notificationAdd, queueAdd } from '../../actions';
 
 it('fetches movies', () => {
   const fakeMovies = ['movie1', 'movie2'];
@@ -61,4 +61,14 @@ it('removes notifications after a delay', () => {
     .put(notificationRemove(id))
     .dispatch(notificationAdd('Success', 'Action successful.', 'success', id))
     .run(2500);
+});
+
+it('updates scroll height after a delay', () => {
+  const scrollSpy = jest.spyOn(window, 'scrollTo')
+  return expectSaga(sagas)
+    .dispatch(queueAdd('New Watchlist'))
+    .run()
+    .then(() => {
+      expect(scrollSpy).toHaveBeenCalled();
+    })
 });

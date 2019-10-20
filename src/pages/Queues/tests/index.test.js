@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Queues from '../index';
 import Queue from '../Queue';
-import { queueItemReorder, queueItemRemove, queueChange } from '../../../actions';
+import { queueItemReorder, queueItemRemove, queueChange, queueAdd } from '../../../actions';
+import Button from 'react-bootstrap/Button';
 
 const mockMovieList = [
   { id: 'm1' },
@@ -53,6 +54,14 @@ it('calls the proper dispatch action when a queue changes names', () => {
   const queue = wrapper.find(Queue);
   queue.invoke('changeQueue')({ name: 'new name' });
   const expectedAction = queueChange(1, { name: 'new name' });
+  expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
+});
+
+it('calls the proper dispatch action when a new queue is added', () => {
+  const wrapper = shallow(<Queues />);
+  const addButton = wrapper.find(Button);
+  addButton.invoke('onClick')();
+  const expectedAction = queueAdd('New Watchlist');
   expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
 });
 
