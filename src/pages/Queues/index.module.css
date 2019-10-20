@@ -14,8 +14,11 @@
 body .queue-item {
   min-width: 12em;
   max-width: 12em;
-  box-sizing: border-box;
   border: none;
+}
+
+.queue-item:hover {
+  cursor: move;
 }
 
 .image_overlay {
