@@ -23,7 +23,7 @@ const Navigation = () => {
       <Navbar.Brand
         className={classes.brand}
         onClick={handleSelect}
-        as={NavLink} to="/"
+        as={NavLink} to="/discover"
       >
         Movie Q
       </Navbar.Brand>
