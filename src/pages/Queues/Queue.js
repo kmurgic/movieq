@@ -141,8 +141,22 @@ const Queue = props => {
         : (
           <>
             <p>You don't have any movies in this queue.</p>
-            <p><Link className="text-secondary" to="/disocver">Discover new movies</Link></p>
-            <p><Link className="text-secondary" to="/search">Search for movies</Link></p>
+            <p>
+              <Link
+                className="text-secondary"
+                to={`${process.env.PUBLIC_URL}/discover`}
+              >
+                Discover new movies
+                </Link>
+            </p>
+            <p>
+              <Link
+                className="text-secondary"
+                to={`${process.env.PUBLIC_URL}/search`}
+              >
+                Search for movies
+                </Link>
+            </p>
           </>
         )
       }

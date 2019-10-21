@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <Redirect to='/discover' />
+    <Redirect to={`${process.env.PUBLIC_URL}/discover`} />
   )
 }
 

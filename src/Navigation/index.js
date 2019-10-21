@@ -23,7 +23,7 @@ const Navigation = () => {
       <Navbar.Brand
         className={classes.brand}
         onClick={handleSelect}
-        as={NavLink} to="/discover"
+        as={NavLink} to={`${process.env.PUBLIC_URL}/discover`}
       >
         Movie Q
       </Navbar.Brand>
@@ -33,21 +33,21 @@ const Navigation = () => {
           <Nav.Link
             onClick={handleSelect}
             as={NavLink}
-            to="discover"
+            to={`${process.env.PUBLIC_URL}/discover`}
           >
             Discover
           </Nav.Link>
           <Nav.Link
             onClick={handleSelect}
             as={NavLink}
-            to="search"
+            to={`${process.env.PUBLIC_URL}/search`}
           >
             Search
           </Nav.Link>
           <Nav.Link
             onClick={handleSelect}
             as={NavLink}
-            to="queues"
+            to={`${process.env.PUBLIC_URL}/queues`}
           >
             My Queues
           </Nav.Link>
