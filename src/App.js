@@ -28,16 +28,16 @@ function App() {
         <Navigation />
         <NotificationContainer />
         <Switch>
-          <Route path="/discover">
+          <Route path={`${process.env.PUBLIC_URL}/discover`}>
             <Discover />
           </Route>
-          <Route path="/search">
+          <Route path={`${process.env.PUBLIC_URL}/search`}>
             <Search />
           </Route>
-          <Route path="/queues">
+          <Route path={`${process.env.PUBLIC_URL}/queues`}>
             <Queues />
           </Route>
-          <Route path="/">
+          <Route path={`${process.env.PUBLIC_URL}/`}>
             <Home />
           </Route>
         </Switch>
