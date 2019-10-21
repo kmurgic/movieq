@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import classes from './index.module.css';
@@ -13,7 +14,8 @@ const initialFilters = {
   minRating: 'Any',
 };
 
-const DiscoverForm = () => {
+const DiscoverForm = (props) => {
+  const { setPage } = props;
   const thisYear = new Date().getFullYear();
   const yearsSince1900 = thisYear - 1900;
   const [filters, setFilters] = useState(initialFilters);
@@ -24,6 +26,7 @@ const DiscoverForm = () => {
     const newFilters = { ...filters, [name]: value };
     setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
     dispatch(discoverMoviesRequest(newFilters));
+    setPage(1);
   };
 
   return (
@@ -124,6 +127,10 @@ const DiscoverForm = () => {
       </Form.Group>
     </Form>
   )
-}
+};
+
+DiscoverForm.propsTypes = {
+  setPage: PropTypes.func.isRequired,
+};
 
 export default DiscoverForm;

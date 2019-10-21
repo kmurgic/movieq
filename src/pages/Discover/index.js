@@ -13,7 +13,9 @@ const Discover = () => {
 
   return (
     <>
-      <DiscoverForm />
+      <DiscoverForm
+        setPage={setPage}
+      />
       <MovieCardContainer
         error={!!error}
         firstLoad={firstLoad}

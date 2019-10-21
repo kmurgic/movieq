@@ -9,10 +9,14 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
 }));
 
+const mockSetPage = jest.fn();
+
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<DiscoverForm />)
+  wrapper = shallow(
+    <DiscoverForm setPage={mockSetPage} />
+  );
 });
 
 afterEach(() => {
@@ -35,5 +39,6 @@ it('correctly updates state for each option', () => {
     const expectedFilters = { ...initialFilters, [name]: 'new value' };
     const expectedAction = discoverMoviesRequest(expectedFilters);
     expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
+    expect(mockSetPage).toHaveBeenCalledWith(1);
   });
 });
