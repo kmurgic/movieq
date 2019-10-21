@@ -17,7 +17,6 @@ const mockMovieList = [
   { id: 10 },
   { id: 11 },
   { id: 12 },
-  { id: 13 },
 ];
 
 let wrapper;
@@ -35,7 +34,7 @@ beforeEach(() => {
 it('renders', () => {
   expect(wrapper);
 });
-it('renders a movie card for the first twelve movies in the list', () => {
+it('renders a movie card for each movie in the list', () => {
   expect(wrapper.find(MovieCard).length).toEqual(12);
 });
 

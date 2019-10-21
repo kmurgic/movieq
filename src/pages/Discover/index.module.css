@@ -1,6 +1,8 @@
 .form_group {
-  margin: 1em;
+  margin: 0 1em;
 }
+
+
 
 /* Bootstrap sm and xs screens */
 @media only screen and (max-width: 767px) {

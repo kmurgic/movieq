@@ -25,11 +25,9 @@ const MovieCardContainer = (props) => {
     <p>Your search did not match any movies.</p>
   );
 
-  const shortList = movies.slice(0, 12);
-
   return (
     <CardDeck className="d-flex justify-content-center flex-wrap mt-4">
-      {shortList.map(movieData => (
+      {movies.map(movieData => (
         <MovieCard
           key={movieData.id}
           overview={movieData.overview}

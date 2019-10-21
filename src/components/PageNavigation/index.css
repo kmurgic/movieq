@@ -1,0 +1,8 @@
+/* Make pagination items smaller on small screens */
+@media only screen and (max-width: 575px) {
+  .pagination-lg a.page-link, .pagination-lg span.page-link {
+    padding: 0.5em 0.75em;
+    font-size: 1em;
+    line-height: 1.25em;
+  };
+};
