@@ -1,6 +1,6 @@
 ## Movie Q
 
-MovieQ is a web application that allows users to create and organize queues of movies they wish to watch. Users can search for their favorite films or explore new options by browsing through tens of thousands of movies that can be sorted by genre, rating, and year of release. 
+MovieQ is a web application that allows users to create and organize queues of movies they wish to watch. Users can search for their favorite films or explore new options by browsing through tens of thousands of movies that can be sorted by genre, rating, and year of release. A live version of the application can be found at [kmurgic.github.io/movieq](https://kmurgic.github.io/movieq).
 
 <img src='/public/movieQScreenShot.png' width='850px' height='459px' alt='screenshot'/>
 
@@ -37,3 +37,8 @@ MovieQ is a web application that allows users to create and organize queues of m
 * Users will be able to paginate through hundreds of pages of movies on the discover page.
 * Users will be able to rate movies and view the ratings of other users.
 * Users will be able to choose to make their queues public and view the queues of other users.
+
+## Demo Video
+
+[<img src='/public/movieQScreenShot.png' width='360px' height='200px' alt='youtube-screenshot'/>](https://youtu.be/K0J22aHPoBk)
+
