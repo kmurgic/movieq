@@ -40,5 +40,5 @@ MovieQ is a web application that allows users to create and organize queues of m
 
 ## Demo Video
 
-[<img src='/public/movieQScreenShot.png' width='360px' height='200px' alt='youtube-screenshot'/>](https://youtu.be/K0J22aHPoBk)
+[<img src='/public/YouTubeScreenShot.png' width='360px' height='200px' alt='youtube-screenshot'/>](https://youtu.be/K0J22aHPoBk)
 
