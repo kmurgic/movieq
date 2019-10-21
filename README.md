@@ -9,9 +9,9 @@ MovieQ is a web application that allows users to create and organize queues of m
 * [Create React App](https://github.com/facebookincubator/create-react-app)
 * [Redux](https://redux.js.org/)
 * [React Router](https://reacttraining.com/react-router/core/guides/philosophy)
-* [Redux-Saga] (https://redux-saga.js.org/)
-* [React-Beautiful-DnD] (https://github.com/atlassian/react-beautiful-dnd)
-* [React-Bootstrap] (https://react-bootstrap.github.io/)
+* [Redux-Saga](https://redux-saga.js.org/)
+* [React-Beautiful-DnD](https://github.com/atlassian/react-beautiful-dnd)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
 
 ## Features
 
