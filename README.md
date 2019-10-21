@@ -1,4 +1,4 @@
-##Movie Q
+## Movie Q
 
 MovieQ is a web application that allows users to create and organize queues of movies they wish to watch. Users can search for their favorite films or explore new options by browsing through tens of thousands of movies that can be sorted by genre, rating, and year of release. 
 
