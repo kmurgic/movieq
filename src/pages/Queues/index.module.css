@@ -53,13 +53,11 @@ body .queue-item {
 }
 
 body .remove_item {
-  display: none;
-  position: absolute !important;
+  position: absolute;
   top: 0.25em;
   right: 0.25em;
-  border-radius: 50%;
 }
 
 .queue-item:hover .remove {
-  display: inline-block;
+  display: block;
 }
