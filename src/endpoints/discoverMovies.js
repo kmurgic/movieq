@@ -18,13 +18,14 @@ async function discoverMovies(filters = {}) {
 
   const queryString = `${genreParam}${maxYearParam}${minYearParam}${maxRatingParam}`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
-    + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false'
-    + `&page=1&certification_country=US${queryString}`;
   let movies = [];
   let totalResults = 60;
-
+  let page = 1;
   while (movies.length < totalResults) {
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
+      + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false'
+      + `&page=${page}&certification_country=US${queryString}`;
+    page++;
     try {
       const response = await fetch(url, options);
       const json = await (response.json());

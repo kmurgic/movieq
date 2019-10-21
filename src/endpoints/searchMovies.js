@@ -6,12 +6,14 @@ const options = {
 const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
 async function searchMovies(query) {
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US`
-    + `&query=${query}&page1&include_adult=false`
+
   let movies = [];
   let totalResults = 60;
+  let page = 1;
 
   while (movies.length < totalResults) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US`
+      + `&query=${query}&page=${page}&include_adult=false`
     try {
       const response = await fetch(url, options);
       const json = await (response.json());
